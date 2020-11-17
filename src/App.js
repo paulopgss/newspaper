@@ -2,7 +2,6 @@ import React from 'react'
 import Header from './components/Header'
 import Global from './global'
 import List from './pages/List'
-import Modal from './pages/Modal'
 
 function App() {
   return (

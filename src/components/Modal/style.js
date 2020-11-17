@@ -13,6 +13,8 @@ export const ContainerModal = styled.div`
     right: 0;
     z-index: 10;
     font-family: Roboto;
+
+    
     
 
     .wrapper{
@@ -44,6 +46,7 @@ export const ContainerModal = styled.div`
             input {
                 flex: 1;
                 padding: 10px;
+                height: 45px;
                 border: 1px solid #ccc;
                 border-radius: 20px 0 0 20px;
                 font: 400 14px Roboto;
@@ -52,6 +55,7 @@ export const ContainerModal = styled.div`
             button {
                 width: 150px;
                 margin-right: 20px;
+                margin-bottom: 20px;
                 background: #53B4CF;
                 color: #fff;
                 font: 400 14px Roboto;
@@ -112,6 +116,11 @@ export const ContainerModal = styled.div`
                 }
 
             }
+
+            
         }
+        }
+
+        
     }
 `

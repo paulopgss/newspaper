@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Logo from '../../assets/logo.png'
 import { Container } from './style'
 
-import Modal from '../../pages/Modal'
+import Modal from '../Modal'
 
 function Header() {
 
