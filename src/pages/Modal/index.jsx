@@ -2,9 +2,13 @@ import React from 'react'
 import Logo from '../../assets/logo.png'
 import { ContainerModal } from './style'
 
-const Modal = ({ onClose = () => { } }) => {
+const Modal = ({ id = 'modal', onClose = () => { } }) => {
+
+    const handleOutSide = (e) => {
+        if(e.target.id === id) onClose()
+    }
   return (
-    <ContainerModal>
+    <ContainerModal id={id} onClick={handleOutSide}>
       <div className="wrapper">
         <img src={Logo} alt="logo" />
         <form action="">

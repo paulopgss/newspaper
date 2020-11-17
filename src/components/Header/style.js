@@ -29,6 +29,12 @@ export const Container = styled.div`
             height: 45px;
             border: none;
             border-radius: 25px;
+            transition: 0.2s;
+            cursor: pointer;
+
+            &:hover{
+                background: #367DD9;
+            }
         }
     }
 `

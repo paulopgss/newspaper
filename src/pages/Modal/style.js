@@ -57,6 +57,12 @@ export const ContainerModal = styled.div`
                 font: 400 14px Roboto;
                 border: 0;
                 border-radius: 0 20px 20px 0;
+                transition: 0.2s;
+                cursor: pointer;
+
+                &:hover{
+                    background: #367DD9;
+                }
             }
         }
 
@@ -98,6 +104,12 @@ export const ContainerModal = styled.div`
                 color: #fff;
                 font: 400 14px Roboto;
                 background: #53B4CF;
+                transition: 0.2s;
+                cursor: pointer;
+
+                &:hover{
+                    background: #367DD9;
+                }
 
             }
         }
