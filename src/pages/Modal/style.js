@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 
 export const ContainerModal = styled.div`
+    
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0 0.5);
+    background: rgba(0,0,0, .8);
     position: absolute;
     top: 0;
     left: 0;
@@ -19,21 +20,26 @@ export const ContainerModal = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        overflow: auto;
         width: 600px;
-        height: 750px;
+
         background: #fff;
         border-radius: 20px;
 
+        img {
+            width: 200px;
+            height: 200px;
+        }
+
         span {
             margin-top: 27px;
-            margin-left: 20px;
+            margin-left: 50px;
         }
 
         .input-img {
             display: flex;
             margin-top: 29px;
-            width: 530px;
-            height: 50px;
+            margin-left: 20px;
 
             input {
                 flex: 1;
@@ -45,6 +51,7 @@ export const ContainerModal = styled.div`
 
             button {
                 width: 150px;
+                margin-right: 20px;
                 background: #53B4CF;
                 color: #fff;
                 font: 400 14px Roboto;
@@ -56,9 +63,10 @@ export const ContainerModal = styled.div`
         .notice {
             display: flex;
             flex-direction: column;
+            margin-left: 20px;
+            margin-right: 20px;
 
             input {
-            width: 525px;
             margin-top: 20px;
             height: 50px;
             border: 1px solid #ccc;
@@ -72,15 +80,17 @@ export const ContainerModal = styled.div`
 
             .content-input {
                 margin-top: 25px;
-                height: 232px;
                 border: 1px solid #ccc;
                 border-radius: 20px;
                 font: 400 14px Roboto;
                 padding: 10px;
+                resize: none;
             }
 
             button {
-                margin-top: 27px;
+                display: flex;
+                margin-top: 20px;
+                margin-bottom: 20px;
                 width: 150px;
                 height: 50px;
                 border: 0;
@@ -88,7 +98,6 @@ export const ContainerModal = styled.div`
                 color: #fff;
                 font: 400 14px Roboto;
                 background: #53B4CF;
-                margin-left: 380px;
 
             }
         }
