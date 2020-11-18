@@ -23,6 +23,7 @@ export const Container = styled.div`
             justify-content: center;
             margin-right: 57px;
             text-decoration: none;
+            outline: none;
             background: #53B4CF;
             color: #fff;
             width: 181px;

@@ -50,6 +50,7 @@ export const ContainerModal = styled.div`
                 border: 1px solid #ccc;
                 border-radius: 20px 0 0 20px;
                 font: 400 14px Roboto;
+                outline: none;
             }
 
             button {
@@ -59,6 +60,7 @@ export const ContainerModal = styled.div`
                 background: #53B4CF;
                 color: #fff;
                 font: 400 14px Roboto;
+                outline: none;
                 border: 0;
                 border-radius: 0 20px 20px 0;
                 transition: 0.2s;
@@ -81,6 +83,7 @@ export const ContainerModal = styled.div`
             height: 50px;
             border: 1px solid #ccc;
             border-radius: 20px;
+            outline: none;
             font: 400 14px Roboto;
 
             &::placeholder {
@@ -92,6 +95,7 @@ export const ContainerModal = styled.div`
                 margin-top: 25px;
                 border: 1px solid #ccc;
                 border-radius: 20px;
+                outline: none;
                 font: 400 14px Roboto;
                 padding: 10px;
                 resize: none;
@@ -103,6 +107,7 @@ export const ContainerModal = styled.div`
                 margin-bottom: 20px;
                 width: 150px;
                 height: 50px;
+                outline: none;
                 border: 0;
                 border-radius: 20px;
                 color: #fff;
@@ -119,7 +124,7 @@ export const ContainerModal = styled.div`
 
             
         }
-        }
+        
 
         
     }

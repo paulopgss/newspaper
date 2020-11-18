@@ -22,7 +22,7 @@ export const List = props => {
             {
                 notices.map(notice => {
                     <Link to="/readnotice">
-                        <img src={ImgNotice} alt=""/>
+                        <img src={notice.file} alt="imagem da noticia"/>
                             <div>
                                 <strong>{notice.title}</strong>
                                 <span>{notice.content}</span>
