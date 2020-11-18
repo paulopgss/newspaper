@@ -11,7 +11,7 @@ function Header() {
     return (
         <Container>
             <div className="container-header">
-                <img src={Logo} alt="" />
+                <a href="/"><img src={Logo} alt="logo" /></a> 
                 <button onClick={() => setModalVisible(true)}>Adicionar notícia</button>
                 {
                     modalVisible &&
