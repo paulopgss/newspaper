@@ -35,7 +35,7 @@ export const ContainerModal = styled.div`
 
         span {
             margin-top: 27px;
-            margin-left: 50px;
+            margin-left: 20px;
         }
 
         .input-img {
@@ -51,6 +51,7 @@ export const ContainerModal = styled.div`
                 border-radius: 20px 0 0 20px;
                 font: 400 14px Roboto;
                 outline: none;
+                display: none;
             }
 
             button {
@@ -99,6 +100,7 @@ export const ContainerModal = styled.div`
                 font: 400 14px Roboto;
                 padding: 10px;
                 resize: none;
+                height: 100px;
             }
 
             button {

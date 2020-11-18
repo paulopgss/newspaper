@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom'
 import api from '../../services/api'
 
 import { ContainerL } from './style'
-import ImgNotice from '../../assets/img-notice.png'
-
-
 
 export const List = props => {
     const [notices, setNotices] = useState([]);

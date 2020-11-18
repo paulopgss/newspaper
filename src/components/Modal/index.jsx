@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from '../../assets/logo.png'
+import api from '../../services/api'
 import { ContainerModal } from './style'
 
 const Modal = ({ id = 'modal', onClose = () => { } }) => {
+
+    const [title, setTitle] = useState('')
+    const [content, setContent] = useState('')
+    const [file, setFile] = useState('')
 
     const handleOutSide = (e) => {
         if (e.target.id === id) onClose()
@@ -15,7 +20,7 @@ const Modal = ({ id = 'modal', onClose = () => { } }) => {
                     <span>Preencha os campos abaixo para adicionar uma notícia.</span>
                     <form>
                         <div className="input-img">
-                            <input type="search" placeholder="Buscar imagem" />
+                            <input type="file" placeholder="Buscar imagem" />
                             <button>Pesquisar</button>
                         </div>
                         <div className="notice">
