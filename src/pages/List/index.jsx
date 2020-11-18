@@ -1,21 +1,36 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {ContainerL} from './style'
+import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
+
+import api from '../../services/api'
+
+import { ContainerL } from './style'
 import ImgNotice from '../../assets/img-notice.png'
 
-function List() {
-    return(
+
+
+export const List = props => {
+    const [notices, setNotices] = useState([]);
+
+    useEffect(() => {
+        api.get('/news').then(resp => {
+            setNotices(resp.data)
+        })
+    }, [])
+
+    return (
         <ContainerL>
-            <Link to="/readnotice">
-                <img src={ImgNotice} alt=""/>
-                <div>
-                    <strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry</strong>
-                    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry  when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five and ...</span>
-                    <p>Ler notícia completa</p>
-                </div>
-            </Link>
+            {
+                notices.map(notice => {
+                    <Link to="/readnotice">
+                        <img src={ImgNotice} alt=""/>
+                            <div>
+                                <strong>{notice.title}</strong>
+                                <span>{notice.content}</span>
+                                <p>Ler notícia completa</p>
+                            </div>
+                    </Link>
+                })
+            }
         </ContainerL>
     )
 }
-
-export default List
