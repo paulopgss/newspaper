@@ -7,31 +7,30 @@ export const Container = styled.div`
         align-items: center;
         justify-content: space-between;
         width: 100vw;
-        height: 116px;
+        height: 100px;
         background: #fff;
-        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
+        padding: 0 30px;
 
         img {
-            margin-left: 36px;
-            width: 250px;
-            height: 250px;
+            width: 200px;
+            height: 200px;
         }
 
         button {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 57px;
             text-decoration: none;
             outline: none;
             background: #53B4CF;
             color: #fff;
-            width: 181px;
             height: 45px;
             border: none;
             border-radius: 25px;
             transition: 0.2s;
             cursor: pointer;
+            padding: 0 30px;
 
             &:hover{
                 background: #367DD9;

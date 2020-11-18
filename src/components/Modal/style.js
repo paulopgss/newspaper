@@ -1,11 +1,11 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ContainerModal = styled.div`
     
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0, .8);
+    background: rgba(0,0,0, 0.8);
     position: absolute;
     top: 0;
     left: 0;
@@ -14,38 +14,35 @@ export const ContainerModal = styled.div`
     z-index: 10;
     font-family: Roboto;
 
-    
-    
-
     .wrapper{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         overflow: auto;
-        width: 600px;
-
+        width: 500px;
         background: #fff;
         border-radius: 20px;
 
         img {
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
         }
 
-        span {
-            margin-top: 27px;
-            margin-left: 50px;
-        }
+        form{
+          width: 100%;
+          padding: 0 20px 20px;
 
-        .input-img {
+          p{
+            margin-bottom: 20px;
+          }
+
+          .input-img {
             display: flex;
-            margin-top: 29px;
-            margin-left: 20px;
 
             input {
                 flex: 1;
-                padding: 10px;
+                padding: 15px;
                 height: 45px;
                 border: 1px solid #ccc;
                 border-radius: 20px 0 0 20px;
@@ -54,13 +51,11 @@ export const ContainerModal = styled.div`
             }
 
             button {
-                width: 150px;
-                margin-right: 20px;
-                margin-bottom: 20px;
                 background: #53B4CF;
                 color: #fff;
                 font: 400 14px Roboto;
                 outline: none;
+                height: 45px;
                 border: 0;
                 border-radius: 0 20px 20px 0;
                 transition: 0.2s;
@@ -70,43 +65,38 @@ export const ContainerModal = styled.div`
                     background: #367DD9;
                 }
             }
-        }
+          }
 
-        .notice {
+          .notice {
             display: flex;
             flex-direction: column;
-            margin-left: 20px;
-            margin-right: 20px;
 
             input {
-            margin-top: 20px;
-            height: 50px;
-            border: 1px solid #ccc;
-            border-radius: 20px;
-            outline: none;
-            font: 400 14px Roboto;
-
-            &::placeholder {
-                padding-left: 10px;
-            }
+              margin-top: 20px;
+              height: 45px;
+              border: 1px solid #ccc;
+              border-radius: 20px;
+              outline: none;
+              font: 400 14px Roboto;
+              padding: 15px;
             }
 
-            .content-input {
-                margin-top: 25px;
+            textarea {
+                margin-top: 20px;
                 border: 1px solid #ccc;
                 border-radius: 20px;
                 outline: none;
                 font: 400 14px Roboto;
-                padding: 10px;
+                padding: 15px;
                 resize: none;
+                height: 180px;
             }
 
             button {
                 display: flex;
+                align-self: flex-end;
                 margin-top: 20px;
-                margin-bottom: 20px;
-                width: 150px;
-                height: 50px;
+                height: 45px;
                 outline: none;
                 border: 0;
                 border-radius: 20px;
@@ -115,17 +105,15 @@ export const ContainerModal = styled.div`
                 background: #53B4CF;
                 transition: 0.2s;
                 cursor: pointer;
-
                 &:hover{
                     background: #367DD9;
                 }
 
             }
-
-            
+           
+          }
+        
         }
-        
-
-        
+  
     }
 `
