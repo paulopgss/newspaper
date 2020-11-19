@@ -12,8 +12,11 @@ const Modal = ({ id = 'modal', onClose = () => { }, history }) => {
   const [file, setFile] = useState('')
 
   const submitNotice = () => {
-    api.post('/news', 
-      { title, content, file }).then((e) => {
+    const formData = new FormData();
+    formData.append('file', inputFile.current.files[0])
+    formData.append('title', title)
+    formData.append('content', content)
+    api.post('/news', formData).then((e) => {
       history.goBack()
     })
   }
