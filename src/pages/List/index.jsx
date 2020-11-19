@@ -22,7 +22,7 @@ export const List = props => {
       <ContainerL>
         {
           notices.map(notice => (
-            <Link to={`notices/${notice.id}`} key={notice.id}>
+            <Link to={`news/${notice.id}`} key={notice.id}>
               <img src={notice.image} alt="imagem da noticia" />
               <div>
                 <strong>{notice.title}</strong>

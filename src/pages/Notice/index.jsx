@@ -7,15 +7,11 @@ import User from '../../assets/user.png'
 
 function Notice({ match }) {
 
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  const [file, setFile] = useState('')
+  const [news, setNews] = useState('')
 
   useEffect(() => {
     api.get(`/news/${match.params.id}`).then(resp => {
-      setTitle(resp.data.title)
-      setContent(resp.data.content)
-      setFile(resp.data.file)
+      setNews(resp.data.news)
     })
   }, [])
 
@@ -24,10 +20,10 @@ function Notice({ match }) {
       <Header />
       <ContainerNotice>
         <div className="notice">
-          <img src={ImgNotice} alt="" />
-          <strong value={title} onChange={e => setTitle(e.target.value)}/>
+          <img src={news.image} alt="" />
+          <strong>{news.title}</strong>
 
-          <p value={content} onChange={e => setContent(e.target.value)} />
+          <p>{news.content}</p>
 
           <hr />
 
