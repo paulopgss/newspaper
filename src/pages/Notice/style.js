@@ -12,7 +12,7 @@ export const ContainerNotice = styled.div`
         justify-content: center;
         align-items: center;
         width: 800px;
-        background: #fff;
+        background: var(--color-background);
         margin-top: 20px;
         border-radius: 20px;
         margin-bottom: 20px;
@@ -50,7 +50,7 @@ export const ContainerNotice = styled.div`
             input {
                 flex: 1;
                 height: 50px;
-                border: 1px solid #ccc;
+                border: 1px solid var(--color-border);
                 border-radius: 20px 0 0 20px;
             }
 
@@ -58,8 +58,8 @@ export const ContainerNotice = styled.div`
                 width: 150px;
                 border: 0;
                 border-radius: 0 20px 20px 0;
-                background: #53B4CF;
-                color: #fff;
+                background: var(--color-button);
+                color: var(--color-background);
                 font: 400 14px Roboto;
                 border: 0;
                 border-radius: 0 20px 20px 0;
@@ -67,7 +67,7 @@ export const ContainerNotice = styled.div`
                 cursor: pointer;
 
                 &:hover{
-                    background: #367DD9;
+                    background: var(--color-hover);
                 }
             }
 
@@ -82,7 +82,7 @@ export const ContainerNotice = styled.div`
             img {
                 width: 40px;
                 height: 40px;
-                border: 1px solid #ccc;
+                border: 1px solid var(--color-border);
                 border-radius: 50%;
             }
 

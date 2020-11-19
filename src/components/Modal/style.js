@@ -21,7 +21,7 @@ export const ContainerModal = styled.div`
         align-items: center;
         overflow: auto;
         width: 500px;
-        background: #fff;
+        background: var(--color-background);
         border-radius: 20px;
 
         img {
@@ -30,31 +30,30 @@ export const ContainerModal = styled.div`
         }
 
         span {
-            margin-top: 27px;
-            margin-left: 20px;
+            margin: 27px 20px;
         }
-
-          p{
-            margin-bottom: 20px;
-          }
 
           .input-img {
             display: flex;
+            align-items: center;
+            margin-top: 20px;
 
-            input {
-                flex: 1;
-                padding: 15px;
-                height: 45px;
-                border: 1px solid #ccc;
-                border-radius: 20px 0 0 20px;
-                font: 400 14px Roboto;
-                outline: none;
-                display: none;
+            label {
+              flex: 1;
+              border: 1px solid var(--color-border);
+              border-radius: 20px 0 0 20px;
+              font-size: 14px;
+              padding: 14px;
+              color: var(--color-gray-text);
+            }
+
+            input[type="file"] {
+              display: none;
             }
 
             button {
-                background: #53B4CF;
-                color: #fff;
+                background: var(--color-button);
+                color: var(--color-background);
                 font: 400 14px Roboto;
                 outline: none;
                 height: 45px;
@@ -64,7 +63,7 @@ export const ContainerModal = styled.div`
                 cursor: pointer;
 
                 &:hover{
-                    background: #367DD9;
+                    background: var(--color-hover);
                 }
             }
           }
@@ -76,39 +75,50 @@ export const ContainerModal = styled.div`
             input {
               margin-top: 20px;
               height: 45px;
-              border: 1px solid #ccc;
+              border: 1px solid var(--color-border);
+              color: var(--color-gray-text);
               border-radius: 20px;
               outline: none;
               font: 400 14px Roboto;
               padding: 15px;
+
+              &::placeholder {
+                color: var(--color-gray-text);
+                font-size: 14px;
+              }
             }
 
             textarea {
                 margin-top: 20px;
-                border: 1px solid #ccc;
+                border: 1px solid var(--color-border);
                 border-radius: 20px;
                 outline: none;
                 font: 400 14px Roboto;
                 padding: 15px;
                 resize: none;
                 height: 100px;
+
+                &::placeholder {
+                color: var(--color-gray-text);
+                font-size: 14px;
+              }
             }
 
             button {
                 display: flex;
                 align-self: flex-end;
-                margin-top: 20px;
+                margin: 20px 0;
                 height: 45px;
                 outline: none;
                 border: 0;
                 border-radius: 20px;
-                color: #fff;
+                color: var(--color-background);
                 font: 400 14px Roboto;
-                background: #53B4CF;
+                background: var(--color-button);
                 transition: 0.2s;
                 cursor: pointer;
                 &:hover{
-                    background: #367DD9;
+                    background: var(--color-hover);
                 }
 
             }

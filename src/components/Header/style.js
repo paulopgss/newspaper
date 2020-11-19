@@ -8,7 +8,7 @@ export const Container = styled.div`
         justify-content: space-between;
         width: 100vw;
         height: 100px;
-        background: #fff;
+        background: var(--color-background);
         box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
         padding: 0 30px;
 
@@ -23,8 +23,8 @@ export const Container = styled.div`
             justify-content: center;
             text-decoration: none;
             outline: none;
-            background: #53B4CF;
-            color: #fff;
+            background: var(--color-button);
+            color: var(--color-background);
             height: 45px;
             border: none;
             border-radius: 25px;
@@ -33,7 +33,7 @@ export const Container = styled.div`
             padding: 0 30px;
 
             &:hover{
-                background: #367DD9;
+                background: var(--color-hover);
             }
         }
     }

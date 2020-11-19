@@ -11,4 +11,13 @@ export default createGlobalStyle`
     body {
         background: #eee;
     }
+
+    :root {
+      --color-button: #53B4CF;
+      --color-background: #ffffff;
+      --color-border: #ccc;
+      --color-hover: #367DD9;
+      --color-text: #000;
+      --color-gray-text: #999;
+    }
 `

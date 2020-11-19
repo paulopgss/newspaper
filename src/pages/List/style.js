@@ -10,7 +10,7 @@ export const ContainerL = styled.div`
     a{
         width: 800px;
         height: 200px;
-        background: #fff;
+        background: var(--color-background);
         border-radius: 20px;
         text-decoration: none;
         display: flex;
@@ -34,20 +34,20 @@ export const ContainerL = styled.div`
                 margin-top: 27px;
                 margin-right: 27px;
                 flex-wrap: wrap;
-                color: #000;
+                color: var(--color-text);
             }
 
             span {
                 margin-top: 14px;
                 margin-right: 27px;
                 flex-wrap: wrap;
-                color: #999;
+                color: var(--color-gray-text);
             }
 
             p {
                 margin-top: 20px;
                 margin-left: 350px;
-                color: #53B4CF;
+                color: var(--color-button);
         }
         }
     }
