@@ -20,10 +20,11 @@ export const ContainerL = styled.div`
         }
 
         img{
-            width: 248px;
+            width: 250px;
             height: 200px;
             border-radius: 20px 20px 0 20px;
             margin-right: 21px;
+            object-fit: cover;
         }
 
         div {
@@ -40,8 +41,12 @@ export const ContainerL = styled.div`
             span {
                 margin-top: 14px;
                 margin-right: 27px;
-                flex-wrap: wrap;
                 color: var(--color-gray-text);
+                flex-wrap: wrap;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
             }
 
             p {

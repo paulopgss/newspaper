@@ -24,6 +24,11 @@ export const ContainerModal = styled.div`
         background: var(--color-background);
         border-radius: 20px;
 
+        .form{
+        width: 100%;
+        padding: 0 30px;
+        }
+
         img {
             width: 150px;
             height: 150px;

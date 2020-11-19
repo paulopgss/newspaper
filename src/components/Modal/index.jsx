@@ -3,7 +3,7 @@ import Logo from '../../assets/logo.png'
 import api from '../../services/api'
 import { ContainerModal } from './style'
 
-const Modal = ({ id = 'modal', onClose = () => { }, history }) => {
+const Modal = ({ id = 'modal', onClose = () => { } }) => {
 
   const inputFile = useRef(null)
 
@@ -17,7 +17,7 @@ const Modal = ({ id = 'modal', onClose = () => { }, history }) => {
     formData.append('title', title)
     formData.append('content', content)
     api.post('/news', formData).then((e) => {
-      history.goBack()
+      onClose(false)
     })
   }
 
@@ -29,7 +29,7 @@ const Modal = ({ id = 'modal', onClose = () => { }, history }) => {
       <div className="wrapper">
         <img src={Logo} alt="logo" />
           <span>Preencha os campos abaixo para adicionar uma notícia.</span>
-          <form>
+          <div className="form">
             <div className="input-img">
               <input 
                 readOnly={true}
@@ -63,7 +63,7 @@ const Modal = ({ id = 'modal', onClose = () => { }, history }) => {
               />
               <button onClick={submitNotice}>Adicionar</button>
             </div>
-          </form>
+          </div>
       </div>
     </ContainerModal>
   )

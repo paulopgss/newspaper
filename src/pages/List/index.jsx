@@ -10,7 +10,9 @@ export const List = props => {
 
   useEffect(() => {
     api.get('/news').then(resp => {
-      setNotices(resp.data)
+      if(resp.data && resp.data.success){
+        setNotices(resp.data.news)
+      }
     })
   }, [])
 
@@ -19,16 +21,16 @@ export const List = props => {
       <Header />
       <ContainerL>
         {
-          notices.map(notice => {
-            <Link to="/readnotice">
-              <img src={notice.file} alt="imagem da noticia" />
+          notices.map(notice => (
+            <Link to={`notices/${notice.id}`} key={notice.id}>
+              <img src={notice.image} alt="imagem da noticia" />
               <div>
                 <strong>{notice.title}</strong>
                 <span>{notice.content}</span>
                 <p>Ler notícia completa</p>
               </div>
             </Link>
-          })
+          ))
         }
       </ContainerL>
     </>
