@@ -38,17 +38,11 @@ export const ContainerModal = styled.div`
             align-items: center;
             margin-top: 20px;
 
-            label {
+            input {
               flex: 1;
               border: 1px solid var(--color-border);
               border-radius: 20px 0 0 20px;
-              font-size: 14px;
               padding: 14px;
-              color: var(--color-gray-text);
-            }
-
-            input[type="file"] {
-              display: none;
             }
 
             button {
@@ -76,16 +70,10 @@ export const ContainerModal = styled.div`
               margin-top: 20px;
               height: 45px;
               border: 1px solid var(--color-border);
-              color: var(--color-gray-text);
               border-radius: 20px;
               outline: none;
               font: 400 14px Roboto;
               padding: 15px;
-
-              &::placeholder {
-                color: var(--color-gray-text);
-                font-size: 14px;
-              }
             }
 
             textarea {
