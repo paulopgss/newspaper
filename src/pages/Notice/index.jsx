@@ -8,12 +8,23 @@ import User from '../../assets/user.png'
 function Notice({ match }) {
 
   const [news, setNews] = useState('')
+  const [text, setText] = useState('')
+  const [comments, setComments] = useState([])
 
   useEffect(() => {
     api.get(`/news/${match.params.id}`).then(resp => {
       setNews(resp.data.news)
+      setComments(resp.data.news.comments)
     })
   }, [])
+
+  const submitComment = () => {
+    api.post('/comments', { text, news_id: match.params.id }).then(resp => {
+      alert('Comentário adicionado')
+      setText('')
+      setComments([ resp.data.comment ,...comments])
+    })
+  }
 
   return (
     <>
@@ -31,17 +42,25 @@ function Notice({ match }) {
 
 
           <div className="new-coment">
-            <input type="text" />
-            <button>Comentar</button>
+            <input
+              type="text"
+              value={text}
+              onChange={e => setText(e.target.value)}
+            />
+            <button onClick={submitComment}>Comentar</button>
           </div>
+          {
+            comments.map(comment => (
+              <div className="coments" key={comment.id}>
+                <img src={User} alt="" />
+                <div className="user-coments">
+                  <strong>Paulo</strong>
+                  <p>{ comment.text}</p>
+                </div>
+              </div>
+            ))
+          }
 
-          <div className="coments">
-            <img src={User} alt="" />
-            <div className="user-coments">
-              <strong>Paulo</strong>
-              <p>type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s</p>
-            </div>
-          </div>
         </div>
 
       </ContainerNotice>
