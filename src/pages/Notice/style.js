@@ -77,29 +77,38 @@ export const ContainerNotice = styled.div`
 
         .coments {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 50px 20px 50px;
+            width: 700px;
+            padding-top: 20px;
 
+            & + div {
+              padding: 0;
+            }
+            
             img {
                 width: 40px;
                 height: 40px;
-                border: 1px solid var(--color-border);
+                background: var(--color-background-geral);
                 border-radius: 50%;
             }
 
             .user-coments {
                 display: flex;
                 flex-direction: column;
+                width: 100%;
+                color: var(--color-comments);
 
                 strong {
-                    margin-left: 15px;
-                    margin-bottom: 5px;
+                  margin-left: 10px;
+                  margin-top: 0;
+                  margin-bottom: 0;
+                  font-size: 16px;
                 }
 
                 p{
-                    margin-left: 15px;
-                    margin-top: 5px;
+                    margin-left: 10px;
+                    margin-bottom: 20px;
+                    margin-top: 0;
+                    flex-wrap: wrap;
                     text-align: justify;
                 }
             }

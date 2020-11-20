@@ -19,5 +19,7 @@ export default createGlobalStyle`
       --color-hover: #367DD9;
       --color-text: #000;
       --color-gray-text: #999;
+      --color-background-geral: #eee;
+      --color-comments: #333;
     }
 `
