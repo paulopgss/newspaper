@@ -15,6 +15,7 @@ export const ContainerNotice = styled.div`
         background: var(--color-background);
         margin-top: 20px;
         border-radius: 20px;
+        padding-bottom: 20px;
         margin-bottom: 20px;
 
         img {
@@ -52,6 +53,8 @@ export const ContainerNotice = styled.div`
             input {
                 flex: 1;
                 height: 50px;
+                outline: none;
+                padding-left: 20px;
                 border: 1px solid var(--color-border);
                 border-radius: 20px 0 0 20px;
             }
@@ -59,6 +62,7 @@ export const ContainerNotice = styled.div`
             button {
                 width: 150px;
                 border: 0;
+                outline: none;
                 border-radius: 0 20px 20px 0;
                 background: var(--color-button);
                 color: var(--color-background);

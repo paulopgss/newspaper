@@ -7,7 +7,7 @@ export const Container = styled.div`
         align-items: center;
         justify-content: space-between;
         width: 100vw;
-        height: 100px;
+        height: 60px;
         background: var(--color-background);
         box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
         padding: 0 30px;
@@ -15,6 +15,7 @@ export const Container = styled.div`
         img {
             width: 200px;
             height: 200px;
+            object-fit: cover;
         }
 
         button {

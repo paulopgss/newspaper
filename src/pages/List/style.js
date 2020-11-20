@@ -5,19 +5,15 @@ export const ContainerL = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 37px;
 
     a{
         width: 800px;
         height: 200px;
+        margin-top: 20px;
         background: var(--color-background);
         border-radius: 20px;
         text-decoration: none;
         display: flex;
-
-        & + a {
-            margin-top: 20px;
-        }
 
         img{
             width: 250px;
