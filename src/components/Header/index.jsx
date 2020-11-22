@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import Logo from '../../assets/logo.png';
-import { Container } from './style';
+import {Container, ContainerHeader, Link, ImgLogo, ButtonStyled} from './styles'
 import Modal from '../Modal';
+
+import Logo from '../../assets/logo.png'
+
 
 function Header() {
 
@@ -9,14 +11,16 @@ function Header() {
 
     return (
         <Container>
-            <div className="container-header">
-                <a href="/"><img src={Logo} alt="logo" /></a>
-                <button onClick={() => setModalVisible(true)}>Adicionar notícia</button>
+            <ContainerHeader>
+                <Link href="/">
+                  <ImgLogo src={Logo} />
+                </Link>
+                <ButtonStyled onClick={() => setModalVisible(true)}>Adicionar notícia</ButtonStyled>
                 {
                     modalVisible &&
                     <Modal onClose={() => setModalVisible(false)} />
                 }
-            </div>
+            </ContainerHeader>
         </Container>
     );
 }
