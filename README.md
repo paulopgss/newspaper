@@ -18,3 +18,5 @@ Com isso a aplicação rodará no seguinte endereço
 Espero que nas próximas edições adicionar prints do funcionamento da aplicação e o endereço onde poderá baixar o backend da mesma.
 
 Happy hacking!
+
+
