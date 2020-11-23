@@ -12,12 +12,23 @@ const Modal = ({ id = 'modal', onClose = () => { } }) => {
   const [file, setFile] = useState('')
 
   const submitNotice = () => {
+
+    if (!title || !content || !inputFile.current || !inputFile.current.files[0]) {
+      return alert('Todos os campos devem ser preenchidos!') }
+
     const formData = new FormData();
     formData.append('file', inputFile.current.files[0])
     formData.append('title', title)
     formData.append('content', content)
-    api.post('/news', formData).then((e) => {
-      onClose(false)
+    api.post('/news', formData).then(resp => {
+      if (resp.data.success) {
+        onClose(false)
+        return alert('Notícia adicionada!')
+      }
+      alert(resp.data.message);
+
+    }).catch((err) => {
+      alert('Erro ao adicionar notícia')
     })
   }
 

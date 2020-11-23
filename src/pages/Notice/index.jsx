@@ -32,9 +32,13 @@ function Notice({ match }) {
 
   const submitComment = () => {
     api.post('/comments', { text, news_id: match.params.id }).then(resp => {
-      alert('Comentário adicionado')
+      if (resp.data.success) {
+        return alert('Comentário adicionado')
+      }
       setText('')
       setComments([ resp.data.comment ,...comments])
+    }).catch((err) => {
+      alert('Erro ao adicionar o comentário')
     })
   }
 

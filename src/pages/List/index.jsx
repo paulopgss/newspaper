@@ -10,9 +10,11 @@ export const List = props => {
 
   useEffect(() => {
     api.get('/news').then(resp => {
-      if(resp.data && resp.data.success){
-        setNotices(resp.data.news)
-      }
+      if (resp.data.success) return setNotices(resp.data.news)
+      alert(resp.data.message)
+
+    }).catch((err) => {
+      alert('Não foi possível buscar a lista de notícias.')
     })
   }, [])
 
