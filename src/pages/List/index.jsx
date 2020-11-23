@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import api from '../../services/api'
 import Header from '../../components/Header'
-import { ContainerL } from './style'
+import { ContainerL, ImgLoad, NewsText, Title, TextContent, OpenNews } from './styles'
 
 export const List = props => {
   const [notices, setNotices] = useState([]);
@@ -23,12 +23,12 @@ export const List = props => {
         {
           notices.map(notice => (
             <Link to={`news/${notice.id}`} key={notice.id}>
-              <img src={notice.image} alt="imagem da noticia" />
-              <div>
-                <strong>{notice.title}</strong>
-                <span>{notice.content}</span>
-                <p>Ler notícia completa</p>
-              </div>
+              <ImgLoad src={notice.image} alt="imagem da noticia" />
+              <NewsText>
+                <Title>{notice.title}</Title>
+                <TextContent>{notice.content}</TextContent>
+                <OpenNews>Ler notícia completa</OpenNews>
+              </NewsText>
             </Link>
           ))
         }

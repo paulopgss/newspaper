@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { ContainerNotice } from './style'
+import { 
+  ContainerNotice, 
+  News, 
+  Img, 
+  Title, 
+  ContentNews, 
+  TitleComment, 
+  NewComment, 
+  Input, Button, 
+  Comments, 
+  ImgComment, 
+  UserComment, 
+  NameUser, 
+  CommentUser } from './styles'
 import api from '../../services/api'
 import Header from '../../components/Header'
-import ImgNotice from '../../assets/img-notice.svg'
 import User from '../../assets/user.png'
 
 function Notice({ match }) {
@@ -30,38 +42,38 @@ function Notice({ match }) {
     <>
       <Header />
       <ContainerNotice>
-        <div className="notice">
-          <img src={news.image} alt="" />
-          <strong>{news.title}</strong>
+        <News>
+          <Img src={news.image} alt="" />
+          <Title>{news.title}</Title>
 
-          <p>{news.content}</p>
+          <ContentNews>{news.content}</ContentNews>
 
           <hr />
 
-          <span>Comentários</span>
+          <TitleComment>Comentários</TitleComment>
 
 
-          <div className="new-coment">
-            <input
+          <NewComment>
+            <Input
               type="text"
               value={text}
               onChange={e => setText(e.target.value)}
             />
-            <button onClick={submitComment}>Comentar</button>
-          </div>
+            <Button onClick={submitComment}>Comentar</Button>
+          </NewComment>
           {
             comments.map(comment => (
-              <div className="coments" key={comment.id}>
-                <img src={User} alt="" />
-                <div className="user-coments">
-                  <strong>Paulo</strong>
-                  <p>{ comment.text}</p>
-                </div>
-              </div>
+              <Comments key={comment.id}>
+                <ImgComment src={User} alt="" />
+                <UserComment className="user-coments">
+                  <NameUser>Paulo</NameUser>
+                  <CommentUser>{ comment.text}</CommentUser>
+                </UserComment>
+              </Comments>
             ))
           }
 
-        </div>
+        </News>
 
       </ContainerNotice>
     </>

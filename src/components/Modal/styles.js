@@ -60,10 +60,7 @@ export const Input = styled.input`
   ${props => props.title && css`
     margin-top: 20px;
     height: 45px;
-    border: 1px solid var(--color-border);
     border-radius: 20px;
-    font: 400 14px Roboto;
-    padding: 15px;
   `}
 `
 
@@ -78,7 +75,6 @@ export const TextArea = styled.textarea`
   height: 200px;
 
   &::placeholder {
-    color: var(--color-gray-text);
     font-size: 14px;
   }
 `
@@ -103,21 +99,9 @@ export const Button = styled.button`
   `}
 
   ${props => props.submit && css`
-
     align-self: flex-end;
     margin: 20px 0;
-    height: 45px;
     width: 150px;
-    outline: none;
-    border: 0;
     border-radius: 20px;
-    color: var(--color-background);
-    font: 400 14px Roboto;
-    background: var(--color-button);
-    transition: 0.2s;
-    cursor: pointer;
-    &:hover{
-      background: ${shade(0.2, '#53B4CF')};
-    }
   `}
 `
