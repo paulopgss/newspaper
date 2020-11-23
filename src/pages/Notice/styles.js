@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { shade } from 'polished'
 
 export const ContainerNotice = styled.div`
     display: flex;
@@ -76,7 +77,7 @@ export const Button = styled.button`
   cursor: pointer;
 
   &:hover{
-    background: var(--color-hover);
+    background: ${shade(0.2, '#53B4CF')};
   }
 `
 
