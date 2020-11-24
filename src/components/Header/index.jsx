@@ -19,8 +19,8 @@ function Header() {
                   <ImgLogo src={Logo} />
                 </Link>
                 <Nav>
-                  <LinkLogin >Criar conta</LinkLogin>
-                  <LinkLogin >Fazer login</LinkLogin>
+                  <LinkLogin href='/' >Criar conta</LinkLogin>
+                  <LinkLogin href='/' >Fazer login</LinkLogin>
                 </Nav>
             </ContainerHeader>
         </Container>

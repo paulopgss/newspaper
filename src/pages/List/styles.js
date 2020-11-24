@@ -71,26 +71,25 @@ export const OpenNews = styled.p`
 export const AddNews = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  
   width: 800px;
-  height: 200px;
+  height: 150px;
   background: var(--color-background);
   margin-top: 20px;
   border-radius: 20px;
 `
 
-export const ButtonStyled = styled.a`
+export const ButtonStyled = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
+  align-self: flex-end;
+  margin-right: 20px;
+  margin-top: 35px;
   outline: none;
   background: var(--color-button);
   color: var(--color-background);
   height: 40px;
-  width: 150px;
   border: none;
   border-radius: 25px;
   transition: 0.2s;
