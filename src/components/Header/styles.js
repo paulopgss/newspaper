@@ -32,12 +32,16 @@ export const Nav = styled.div`
   align-items: center;
 `
 
-export const LinkLogin = styled.a`
+export const LinkLogin = styled.button`
   text-decoration: none;
+  border: 0;
+  background: transparent;
+  outline: none;
   color: #000;
   padding: 20px;
   cursor: pointer;
   transition: 0.2s;
+  font-size: 18px;
 
   :hover {
     color: var(--color-button);
