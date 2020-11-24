@@ -1,6 +1,4 @@
 import styled from 'styled-components'
-import { shade } from 'polished'
-
 
 export const Container = styled.div`
   display: flex;
@@ -29,22 +27,19 @@ export const ImgLogo = styled.img`
   object-fit: cover;
 `
 
-export const ButtonStyled = styled.a`
+export const Nav = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  outline: none;
-  background: var(--color-button);
-  color: var(--color-background);
-  height: 40px;
-  border: none;
-  border-radius: 25px;
-  transition: 0.2s;
-  cursor: pointer;
-  padding: 0 30px;
+`
 
-  &:hover{
-    background: ${shade(0.2, '#53B4CF')};
+export const LinkLogin = styled.a`
+  text-decoration: none;
+  color: #000;
+  padding: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+
+  :hover {
+    color: var(--color-button);
   }
 `

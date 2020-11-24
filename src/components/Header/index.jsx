@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import {Container, ContainerHeader, Link, ImgLogo, ButtonStyled} from './styles'
-import Modal from '../Modal';
+import {
+  Container, 
+  ContainerHeader, 
+  Link, 
+  ImgLogo,
+  Nav, 
+  LinkLogin} from './styles'
 
 import Logo from '../../assets/logo.png'
 
 
 function Header() {
-
-    const [modalVisible, setModalVisible] = useState(false);
 
     return (
         <Container>
@@ -15,11 +18,10 @@ function Header() {
                 <Link href="/">
                   <ImgLogo src={Logo} />
                 </Link>
-                <ButtonStyled onClick={() => setModalVisible(true)}>Adicionar notícia</ButtonStyled>
-                {
-                    modalVisible &&
-                    <Modal onClose={() => setModalVisible(false)} />
-                }
+                <Nav>
+                  <LinkLogin >Criar conta</LinkLogin>
+                  <LinkLogin >Fazer login</LinkLogin>
+                </Nav>
             </ContainerHeader>
         </Container>
     );

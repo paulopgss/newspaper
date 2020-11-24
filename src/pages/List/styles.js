@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
+import {shade} from 'polished'
 
 export const ContainerL = styled.div`
   display: flex;
@@ -24,6 +25,14 @@ export const ImgLoad = styled.img`
   border-radius: 20px 20px 0 20px;
   margin-right: 21px;
   object-fit: cover;
+
+  -webkit-transition: -webkit-transform .5s ease;
+   transition: transform .5s ease;
+
+   :hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+   }
 `
 
 export const NewsText = styled.div`
@@ -36,6 +45,10 @@ export const Title = styled.strong`
   margin-right: 27px;
   flex-wrap: wrap;
   color: var(--color-text);
+
+  ${props => props.addnews && css`
+   font-size: 24px;
+  ` }
 `
 
 export const TextContent = styled.span`
@@ -53,4 +66,38 @@ export const OpenNews = styled.p`
   margin-top: 20px;
   margin-left: 350px;
   color: var(--color-button);
+`
+
+export const AddNews = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  width: 800px;
+  height: 200px;
+  background: var(--color-background);
+  margin-top: 20px;
+  border-radius: 20px;
+`
+
+export const ButtonStyled = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  outline: none;
+  background: var(--color-button);
+  color: var(--color-background);
+  height: 40px;
+  width: 150px;
+  border: none;
+  border-radius: 25px;
+  transition: 0.2s;
+  cursor: pointer;
+  padding: 0 30px;
+
+  &:hover{
+    background: ${shade(0.2, '#53B4CF')};
+  }
 `

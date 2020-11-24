@@ -3,10 +3,22 @@ import { Link } from 'react-router-dom'
 
 import api from '../../services/api'
 import Header from '../../components/Header'
-import { ContainerL, ImgLoad, NewsText, Title, TextContent, OpenNews } from './styles'
+import Modal from '../../components/Modal';
+import { 
+  ContainerL, 
+  AddNews, 
+  ImgLoad, 
+  NewsText, 
+  Title, 
+  TextContent, 
+  OpenNews,
+  ButtonStyled 
+} from './styles'
 
 export const List = props => {
-  const [notices, setNotices] = useState([]);
+  const [notices, setNotices] = useState([])
+  const [modalVisible, setModalVisible] = useState(false)
+
 
   useEffect(() => {
     api.get('/news').then(resp => {
@@ -22,6 +34,14 @@ export const List = props => {
     <>
       <Header />
       <ContainerL>
+        <AddNews>
+          <Title addnews>Últimas notícias</Title>
+          <ButtonStyled onClick={() => setModalVisible(true)}>Adicionar notícia</ButtonStyled>
+          {
+            modalVisible &&
+            <Modal onClose={() => setModalVisible(false)} />
+          }
+        </AddNews>
         {
           notices.map(notice => (
             <Link to={`news/${notice.id}`} key={notice.id}>
