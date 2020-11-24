@@ -1,7 +1,16 @@
 import React, { useState, useRef } from 'react'
 import Logo from '../../assets/logo.png'
 import api from '../../services/api'
-import { ContainerModal, Wrapper, LogoImg, SpanText, Form, InputsImg, Input, TextArea, Button } from './styles'
+import { 
+  ContainerModal, 
+  Wrapper, 
+  LogoImg, 
+  SpanText, 
+  Form, 
+  InputsImg, 
+  Input, 
+  TextArea, 
+  Button } from './styles'
 
 const Modal = ({ id = 'modal', onClose = () => { } }) => {
 

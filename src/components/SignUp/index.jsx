@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Logo from '../../assets/logo.png'
 import { 
   ContainerModal,
@@ -10,7 +10,12 @@ import {
   Button
  } from './styles'
 
+ import api from '../../services/api'
+
 function SignUp({ id = 'modal', onClose = () => { } }) {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleOutSide = (e) => {
     if (e.target.id === id) onClose()
