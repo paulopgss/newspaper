@@ -46,7 +46,6 @@ const Modal = ({ id = 'modal', onClose = () => { } }) => {
               readOnly={true}
               placeholder="Adicionar foto"
               value={file}
-              style={{ cursor: 'pointer' }}
             />
             <Input
               type="file"
