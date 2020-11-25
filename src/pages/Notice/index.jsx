@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { 
-  ContainerNotice, 
-  News, 
-  Img, 
-  Title, 
-  ContentNews, 
-  TitleComment, 
-  NewComment, 
-  Input, Button, 
-  Comments, 
-  ImgComment, 
-  UserComment, 
-  NameUser, 
-  CommentUser } from './styles'
+import {
+  ContainerNotice,
+  News,
+  Img,
+  Title,
+  ContentNews,
+  TitleComment,
+  NewComment,
+  Input, Button,
+  Comments,
+  ImgComment,
+  UserComment,
+  NameUser,
+  CommentUser
+} from './styles'
 import api from '../../services/api'
 import Header from '../../components/Header'
 import User from '../../assets/user.png'
@@ -34,7 +35,7 @@ function Notice({ match }) {
     api.post('/comments', { text, news_id: match.params.id }).then(resp => {
       if (resp.data.success) {
         setText('')
-        setComments([ resp.data.comment ,...comments])
+        setComments([resp.data.comment, ...comments])
         return alert('Comentário adicionado')
       }
     }).catch((err) => {
@@ -71,7 +72,7 @@ function Notice({ match }) {
                 <ImgComment src={User} alt="" />
                 <UserComment className="user-coments">
                   <NameUser>Paulo</NameUser>
-                  <CommentUser>{ comment.text}</CommentUser>
+                  <CommentUser>{comment.text}</CommentUser>
                 </UserComment>
               </Comments>
             ))

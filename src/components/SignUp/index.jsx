@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Logo from '../../assets/logo.png'
-import { 
+import {
   ContainerModal,
   Wrapper,
   LogoImg,
@@ -8,9 +8,9 @@ import {
   Form,
   Input,
   Button
- } from './styles'
+} from './styles'
 
- import api from '../../services/api'
+import api from '../../services/api'
 
 function SignUp({ id = 'modal', onClose = () => { } }) {
   const [name, setName] = useState('')
@@ -20,7 +20,7 @@ function SignUp({ id = 'modal', onClose = () => { } }) {
   const handleOutSide = (e) => {
     if (e.target.id === id) onClose()
   }
-  return(
+  return (
     <ContainerModal id={id} onClick={handleOutSide}>
       <Wrapper>
         <LogoImg src={Logo} alt="logo" />
@@ -42,7 +42,7 @@ function SignUp({ id = 'modal', onClose = () => { } }) {
             title
             placeholder="Confirmar senha"
           />
-          <Button 
+          <Button
             submit
           >Criar</Button>
         </Form>

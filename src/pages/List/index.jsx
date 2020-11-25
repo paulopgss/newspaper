@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom'
 import api from '../../services/api'
 import Header from '../../components/Header'
 import Modal from '../../components/Modal';
-import { 
-  ContainerL, 
-  AddNews, 
-  ImgLoad, 
-  NewsText, 
-  Title, 
-  TextContent, 
+import {
+  ContainerL,
+  AddNews,
+  ImgLoad,
+  NewsText,
+  Title,
+  TextContent,
   OpenNews,
-  ButtonStyled 
+  ButtonStyled
 } from './styles'
 
 export const List = props => {

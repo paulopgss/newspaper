@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../../components/Header'
-import { 
+import {
   ContainerProfile,
   Wrapper,
   Span,
@@ -8,29 +8,29 @@ import {
   Inputs,
   Input,
   Button
- } from './styles'
+} from './styles'
 
- import ProfileImg from '../../assets/profile.jpg'
+import ProfileImg from '../../assets/profile.jpg'
 
 function Profile() {
-  return(
+  return (
     <>
-    <Header />
-    <ContainerProfile>
-      <Wrapper>
-        <Span>Meus dados</Span>
-        <ImgProfile src={ProfileImg} />
-        <Inputs>
-        <Input placeholder="Nome" />
-        <Input placeholder="Email" />
-        <Span message>Altere os dados abaixo somente para realizar alteração de senha.</Span>
-        <Input placeholder="Senha atual" />
-        <Input placeholder="Nova senha" />
-        <Input placeholder="Confirme a nova senha" />
-        <Button>Salva</Button>
-        </Inputs>
-      </Wrapper>
-    </ContainerProfile>
+      <Header />
+      <ContainerProfile>
+        <Wrapper>
+          <Span>Meus dados</Span>
+          <ImgProfile src={ProfileImg} />
+          <Inputs>
+            <Input placeholder="Nome" />
+            <Input placeholder="Email" />
+            <Span message>Altere os dados abaixo somente para realizar alteração de senha.</Span>
+            <Input placeholder="Senha atual" />
+            <Input placeholder="Nova senha" />
+            <Input placeholder="Confirme a nova senha" />
+            <Button>Salva</Button>
+          </Inputs>
+        </Wrapper>
+      </ContainerProfile>
     </>
   )
 }

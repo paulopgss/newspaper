@@ -1,16 +1,17 @@
 import React, { useState, useRef } from 'react'
 import Logo from '../../assets/logo.png'
 import api from '../../services/api'
-import { 
-  ContainerModal, 
-  Wrapper, 
-  LogoImg, 
-  SpanText, 
-  Form, 
-  InputsImg, 
-  Input, 
-  TextArea, 
-  Button } from './styles'
+import {
+  ContainerModal,
+  Wrapper,
+  LogoImg,
+  SpanText,
+  Form,
+  InputsImg,
+  Input,
+  TextArea,
+  Button
+} from './styles'
 
 const Modal = ({ id = 'modal', onClose = () => { } }) => {
 
@@ -23,7 +24,8 @@ const Modal = ({ id = 'modal', onClose = () => { } }) => {
   const submitNotice = () => {
 
     if (!title || !content || !inputFile.current || !inputFile.current.files[0]) {
-      return alert('Todos os campos devem ser preenchidos!') }
+      return alert('Todos os campos devem ser preenchidos!')
+    }
 
     const formData = new FormData();
     formData.append('file', inputFile.current.files[0])
@@ -64,9 +66,9 @@ const Modal = ({ id = 'modal', onClose = () => { } }) => {
               style={{ display: 'none' }}
               onChange={e => setFile(inputFile.current.files[0].name)}
             />
-            <Button 
+            <Button
               search
-              onClick={() => inputFile.current.click()} 
+              onClick={() => inputFile.current.click()}
               type="button">
               Pesquisar
               </Button>
@@ -83,7 +85,7 @@ const Modal = ({ id = 'modal', onClose = () => { } }) => {
             value={content}
             onChange={e => setContent(e.target.value)}
           />
-          <Button 
+          <Button
             submit
             onClick={submitNotice}>Adicionar</Button>
         </Form>

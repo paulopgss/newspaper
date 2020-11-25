@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../../assets/logo.png'
-import { 
+import {
   ContainerModal,
   Wrapper,
   LogoImg,
@@ -8,14 +8,14 @@ import {
   Form,
   Input,
   Button
- } from './styles'
+} from './styles'
 
 function Login({ id = 'modal', onClose = () => { } }) {
 
   const handleOutSide = (e) => {
     if (e.target.id === id) onClose()
   }
-  return(
+  return (
     <ContainerModal id={id} onClick={handleOutSide}>
       <Wrapper>
         <LogoImg src={Logo} alt="logo" />
@@ -29,7 +29,7 @@ function Login({ id = 'modal', onClose = () => { } }) {
             title
             placeholder="Senha"
           />
-          <Button 
+          <Button
             submit
           >Entrar</Button>
         </Form>
