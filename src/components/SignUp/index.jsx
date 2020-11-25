@@ -26,7 +26,7 @@ function SignUp({ id = 'modal', onClose = () => { } }) {
     }
 
     api.post('/users', {name, email, password}).then(resp => {
-      if (resp.data.sucess) {
+      if (resp.data.success) {
         onClose(false)
         return alert('Usuario cadastrado!')
       }
