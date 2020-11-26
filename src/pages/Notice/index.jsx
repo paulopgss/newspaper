@@ -29,7 +29,7 @@ function Notice({ match }) {
       setNews(resp.data.news)
       setComments(resp.data.news.comments)
     })
-  }, [])
+  }, [match.params.id])
 
   const submitComment = () => {
     api.post('/comments', { text, news_id: match.params.id }).then(resp => {
