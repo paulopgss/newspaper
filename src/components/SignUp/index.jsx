@@ -21,7 +21,7 @@ function SignUp({ id = 'modal', onClose = () => { } }) {
   const addUser = () => {
     if (!name || !email || !password || !comppass) {
       return alert('Todos os campos devem ser preenchidos')
-    } if (password != comppass) {
+    } if (password !== comppass) {
       return alert('As senhas são diferentes')
     }
 

@@ -20,12 +20,16 @@ export const Wrapper = styled.div`
 `
 
 export const Span = styled.span`
+  display: flex;
+  align-items: center;
   padding: 40px;
   font-size: 20px;
 
   ${props => props.message && css`
-    padding: 10px;
+    padding: 20px 10px;
     font-size: 14px;
+    color: var(--color-gray-text);
+
   `}
 `
 

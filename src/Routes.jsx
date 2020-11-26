@@ -9,7 +9,7 @@ function Routes() {
     <BrowserRouter>
       <Route path="/" exact component={List} />
       <Route path="/news/:id" component={Notice} />
-      <Route path="/profile" component={Profile} />
+      <Route path="/profile/user/:id" component={Profile} />
     </BrowserRouter>
   )
 }
