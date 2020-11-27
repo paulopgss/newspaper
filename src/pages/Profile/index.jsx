@@ -33,12 +33,16 @@ function Profile({ match }) {
   }, [])
 
   const submitSave = () => {
+    if (!name || !email) {
+      return alert('Os dados não podem ficar em branco, favor preencher!')
+    }
+    
     const formData = new FormData()
     formData.append('name', name)
     formData.append('email', email)
     formData.append('file', inputFile.current.files[0])
     formData.append('newPassword', newPassword)
-    api.put(`/users/${match.params.id}`, { name, email, file }).then(resp => {
+    api.put(`/users/${match.params.id}`, { name, email, file, newPassword }).then(resp => {
       alert('Dados alterados')
     })
   }
