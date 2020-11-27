@@ -12,8 +12,11 @@ import {
   TextArea,
   Button
 } from './styles'
+import {useAuth} from '../../App'
 
 const Modal = ({ id = 'modal', onClose = () => { } }) => {
+
+  const { authUser } = useAuth()
 
   const inputFile = useRef(null)
 
@@ -31,6 +34,7 @@ const Modal = ({ id = 'modal', onClose = () => { } }) => {
     formData.append('file', inputFile.current.files[0])
     formData.append('title', title)
     formData.append('content', content)
+    formData.append('user_id', authUser.userId)
     api.post('/news', formData).then(resp => {
       if (resp.data.success) {
         onClose(false)
