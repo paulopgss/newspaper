@@ -30,7 +30,7 @@ function Profile({ match }) {
       setEmail(resp.data.user.email)
       setFile(resp.data.user.image)
     })
-  }, [])
+  }, [match.params.id])
 
   const submitSave = () => {
     if (!name || !email) {

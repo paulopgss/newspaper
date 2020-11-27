@@ -1,15 +1,20 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import { List } from './pages/List'
 import Notice from './pages/Notice'
 import Profile from './pages/Profile'
 
-function Routes() {
+function Routes({ authUser }) {
+
   return (
     <BrowserRouter>
-      <Route path="/" exact component={List} />
-      <Route path="/news/:id" component={Notice} />
-      <Route path="/profile/user/:id" component={Profile} />
+      <Switch>
+        <Route path="/" exact component={List} />
+        <Route path="/news/:id" component={(props) => {
+          return authUser.authenticated ? <Notice {...props} /> : <Redirect to='/' />
+        }} />
+        <Route path="/profile/user/:id" component={(props) => authUser.authenticated ? <Profile {...props} /> : <Redirect to='/' />} />
+      </Switch>
     </BrowserRouter>
   )
 }

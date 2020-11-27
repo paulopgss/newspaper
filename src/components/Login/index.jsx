@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Logo from '../../assets/logo.png'
 import api from '../../services/api'
 import {
@@ -11,18 +11,30 @@ import {
   Button
 } from './styles'
 
+import { useAuth } from '../../App';
+
 function Login({ id = 'modal', onClose = () => { } }) {
+
+  const { authUser, setAuthUser } = useAuth();
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const [loading, setLoading] = useState(false)
+
   const submitLogin = () => {
-    api.post('/sessions', {email, password}).then(resp => {
-      console.log(resp.data)
+    setLoading(true)
+    api.post('/sessions', { email, password }).then(resp => {
+      setLoading(false)
       if (resp.data.success) {
-        onClose(false)
+        onClose(false);
+        setAuthUser({ authenticated: true, userId: resp.data.user_id });
+        localStorage.setItem('user_id_newspaper', resp.data.user_id);
         return alert('login realizado')
-      } alert(resp.data.message)
+      }
+      alert(resp.data.message)
     }).catch((err) => {
+      setLoading(false)
       return alert('Erro ao realizar o login!')
     })
   }
@@ -50,7 +62,7 @@ function Login({ id = 'modal', onClose = () => { } }) {
           <Button
             submit
             onClick={submitLogin}
-          >Entrar</Button>
+          >{loading ? 'Carregando...' : 'Entrar'}</Button>
         </Form>
       </Wrapper>
     </ContainerModal>
