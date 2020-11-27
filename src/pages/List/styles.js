@@ -19,6 +19,17 @@ export const ContainerL = styled.div`
   }
 `
 
+export const LinkD = styled.div`
+  width: 800px;
+  height: 200px;
+  margin-top: 20px;
+  background: var(--color-background);
+  border-radius: 20px;
+  text-decoration: none;
+  display: flex;
+  cursor: pointer;
+`
+
 export const ImgLoad = styled.img`
   width: 250px;
   height: 200px;

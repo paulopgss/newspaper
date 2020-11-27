@@ -12,7 +12,8 @@ import {
   Title,
   TextContent,
   OpenNews,
-  ButtonStyled
+  ButtonStyled,
+  LinkD
 } from './styles'
 import Login from '../../components/Login'
 import {useAuth} from '../../App'
@@ -64,20 +65,20 @@ export const List = props => {
         }
         { !authUser.authenticated &&
           notices.map(notice => (
-            <Link onClick={() => setLoginVisible(true)} key={notice.id}>
-              {
-              loginVisible &&
-              <Login onClose={() => setLoginVisible(false)} />
-            }
+            <LinkD onClick={() => setLoginVisible(true)} key={notice.id}>
               <ImgLoad src={notice.image} alt="imagem da noticia" />
               <NewsText>
                 <Title>{notice.title}</Title>
                 <TextContent>{notice.content}</TextContent>
                 <OpenNews>Ler notícia completa</OpenNews>
               </NewsText>
-            </Link>
+            </LinkD>
           ))
         }
+         {
+              loginVisible &&
+              <Login onClose={() => setLoginVisible(false)} />
+            }
       </ContainerL>
     </>
   )
