@@ -10,9 +10,12 @@ import {
   Input,
   Button
 } from './styles'
+import {useAuth} from '../../App'
 
 
 function SignUp({ id = 'modal', onClose = () => { } }) {
+  const {setAuthUser} = useAuth()
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -28,12 +31,13 @@ function SignUp({ id = 'modal', onClose = () => { } }) {
     api.post('/users', {name, email, password}).then(resp => {
       if (resp.data.success) {
         onClose(false)
-        return alert('Usuario cadastrado!')
+        setAuthUser({ authenticated: true, userId: resp.data.user_id})
+        localStorage.setItem('userId', resp.data.user_id)
       }
       alert(resp.data.message)
 
     }).catch((err) => {
-      alert('Erro ao criar usuário!')
+      alert('Erro ao cadastrar usuário!')
     })
   }
 
