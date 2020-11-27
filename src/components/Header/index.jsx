@@ -47,7 +47,7 @@ function Header() {
           <Nav>
             <LinkLogin onClick={() => setSignUpVisible(true)}>Notícias</LinkLogin>
 
-            <LinkLogin onClick={() => setLoginVisible(true)}>Meus dados</LinkLogin>
+            <LinkLogin >Meus dados</LinkLogin>
 
             <LinkLogin onClick={() => {
               localStorage.removeItem('user_id_newspaper');

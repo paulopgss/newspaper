@@ -13,7 +13,7 @@ function Routes({ authUser }) {
         <Route path="/news/:id" component={(props) => {
           return authUser.authenticated ? <Notice {...props} /> : <Redirect to='/' />
         }} />
-        <Route path="/profile/user/:id" component={(props) => authUser.authenticated ? <Profile {...props} /> : <Redirect to='/' />} />
+        <Route path="/profile/user/" component={(props) => authUser.authenticated ? <Profile {...props} /> : <Redirect to='/' />} />
       </Switch>
     </BrowserRouter>
   )
