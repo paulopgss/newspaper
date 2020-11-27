@@ -33,6 +33,7 @@ function SignUp({ id = 'modal', onClose = () => { } }) {
         onClose(false)
         setAuthUser({ authenticated: true, userId: resp.data.user_id})
         localStorage.setItem('userId', resp.data.user_id)
+        return
       }
       alert(resp.data.message)
 

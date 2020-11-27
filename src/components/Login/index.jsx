@@ -27,10 +27,10 @@ function Login({ id = 'modal', onClose = () => { } }) {
     api.post('/sessions', { email, password }).then(resp => {
       setLoading(false)
       if (resp.data.success) {
-        onClose(false);
-        setAuthUser({ authenticated: true, userId: resp.data.user_id });
-        localStorage.setItem('user_id_newspaper', resp.data.user_id);
-        return alert('login realizado')
+        onClose(false)
+        setAuthUser({ authenticated: true, userId: resp.data.user_id })
+        localStorage.setItem('user_id_newspaper', resp.data.user_id)
+        return
       }
       alert(resp.data.message)
     }).catch((err) => {
