@@ -15,7 +15,7 @@ export const ContainerHeader = styled.div`
   padding: 0 30px;
 `
 
-export const Link = styled.a`
+export const LinkImg = styled.a`
   text-decoration: none;
   height: 60px;
   width: 200px;
@@ -30,6 +30,19 @@ export const ImgLogo = styled.img`
 export const Nav = styled.div`
   display: flex;
   align-items: center;
+
+  a {
+    text-decoration: none;
+    color: #000;
+    padding: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 18px;
+
+    :hover {
+      color: var(--color-button);
+    }
+  }
 `
 
 export const LinkLogin = styled.button`

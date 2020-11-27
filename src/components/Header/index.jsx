@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   Container,
   ContainerHeader,
-  Link,
+  LinkImg,
   ImgLogo,
   Nav,
   LinkLogin
 } from './styles'
+import Logo from '../../assets/logo.png'
 import Login from '../Login'
 import SignUp from '../SignUp'
-import Logo from '../../assets/logo.png'
 
 import { useAuth } from '../../App';
 
 function Header() {
 
-  const { authUser, setAuthUser } = useAuth();
+  const { authUser, setAuthUser } = useAuth()
 
   const [loginVisible, setLoginVisible] = useState(false)
   const [signUpVisible, setSignUpVisible] = useState(false)
@@ -24,9 +25,9 @@ function Header() {
   return (
     <Container>
       <ContainerHeader>
-        <Link href="/">
+        <LinkImg href="/">
           <ImgLogo src={Logo} />
-        </Link>
+        </LinkImg>
         {
           !authUser.authenticated &&
           <Nav>
@@ -45,9 +46,9 @@ function Header() {
         {
           authUser.authenticated &&
           <Nav>
-            <LinkLogin onClick={() => setSignUpVisible(true)}>Notícias</LinkLogin>
+            <Link to="/">Notícias</Link>
 
-            <LinkLogin >Meus dados</LinkLogin>
+            <Link to="/profile/user" >Meus dados</Link>
 
             <LinkLogin onClick={() => {
               localStorage.removeItem('user_id_newspaper');
