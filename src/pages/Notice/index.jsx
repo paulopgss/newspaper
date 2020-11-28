@@ -69,7 +69,7 @@ function Notice({ match }) {
           {
             comments.map(comment => (
               <Comments key={comment.id}>
-                <ImgComment src={commment.user_photo || User} alt="" />
+                <ImgComment src={comment.user_photo || User} alt="" />
                 <UserComment className="user-comments">
                   <NameUser>{comment.user_name}</NameUser>
                   <CommentUser>{comment.text}</CommentUser>
