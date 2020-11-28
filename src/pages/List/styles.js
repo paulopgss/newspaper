@@ -77,6 +77,10 @@ export const OpenNews = styled.p`
   margin-top: 20px;
   margin-left: 350px;
   color: var(--color-button);
+
+  &:hover{
+    color: ${shade(0.2, '#53B4CF')};
+  }
 `
 
 export const AddNews = styled.div`
