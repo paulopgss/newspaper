@@ -77,7 +77,7 @@ function Profile({ match }) {
               borderRadius: '50%',
               border: '1px solid #ccc', cursor: 'pointer'
             }} />
-          <ImgProfile src={file || ProfileImg} />
+          <ImgProfile src={file || ProfileImg} alt="Foto de perfil" />
           <Input
             type="file"
             ref={inputFile}
