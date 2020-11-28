@@ -15,10 +15,12 @@ import {
   CommentUser
 } from './styles'
 import api from '../../services/api'
+import { useAuth } from '../../App'
 import Header from '../../components/Header'
 import User from '../../assets/user.png'
 
 function Notice({ match }) {
+  const { authUser } = useAuth()
 
   const [news, setNews] = useState('')
   const [text, setText] = useState('')
@@ -26,17 +28,20 @@ function Notice({ match }) {
 
   useEffect(() => {
     api.get(`/news/${match.params.id}`).then(resp => {
-      setNews(resp.data.news)
-      setComments(resp.data.news.comments)
+      if(resp.data.success){
+        setNews(resp.data.news)
+        return setComments(resp.data.news.comments)
+      }alert(resp.data.message)
+    }).catch((err) => {
+      alert('Erro ao carregar a notícia!')
     })
   }, [match.params.id])
 
   const submitComment = () => {
-    api.post('/comments', { text, news_id: match.params.id }).then(resp => {
+    api.post('/comments', { text, news_id: match.params.id, user_id: authUser.userId }).then(resp => {
       if (resp.data.success) {
         setText('')
         setComments([resp.data.comment, ...comments])
-        return alert('Comentário adicionado')
       }
     }).catch((err) => {
       alert('Erro ao adicionar o comentário')
@@ -50,14 +55,9 @@ function Notice({ match }) {
         <News>
           <Img src={news.image} alt="" />
           <Title>{news.title}</Title>
-
           <ContentNews>{news.content}</ContentNews>
-
           <hr />
-
           <TitleComment>Comentários</TitleComment>
-
-
           <NewComment>
             <Input
               type="text"
@@ -69,9 +69,9 @@ function Notice({ match }) {
           {
             comments.map(comment => (
               <Comments key={comment.id}>
-                <ImgComment src={User} alt="" />
-                <UserComment className="user-coments">
-                  <NameUser>Paulo</NameUser>
+                <ImgComment src={commment.user_photo || User} alt="" />
+                <UserComment className="user-comments">
+                  <NameUser>{comment.user_name}</NameUser>
                   <CommentUser>{comment.text}</CommentUser>
                 </UserComment>
               </Comments>
