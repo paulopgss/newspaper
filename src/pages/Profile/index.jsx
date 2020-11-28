@@ -11,24 +11,26 @@ import {
 } from './styles'
 import { MdAddAPhoto, MdClose } from 'react-icons/md'
 import { FiAlertTriangle } from 'react-icons/fi'
-import ProfileImg from '../../assets/profile.jpg'
+import ProfileImg from '../../assets/user.png'
 import api from '../../services/api'
+import { useAuth } from '../../App'
 
 function Profile({ match }) {
+  const { authUser } = useAuth()
   const inputFile = useRef(null)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [file, setFile] = useState('')
-  const [removePhoto, setRemovePhoto] = useState('')
+  const [removePhoto, setRemovePhoto] = useState(false)
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confNewPass, setConfNewPass] = useState('')
 
   useEffect(() => {
-    api.get(`/users/${match.params.id}`).then(resp => {
+    api.get(`/users/${authUser.userId}`).then(resp => {
       setName(resp.data.user.name)
       setEmail(resp.data.user.email)
-      setFile(resp.data.user.image)
+      setFile(resp.data.user.photo)
     })
   }, [match.params.id])
 
@@ -36,13 +38,24 @@ function Profile({ match }) {
     if (!name || !email) {
       return alert('Os dados não podem ficar em branco, favor preencher!')
     }
-    
+
+    if((currentPassword || newPassword || confNewPass) && (!currentPassword || !newPassword || !confNewPass)) {
+      return alert('É necessário preencher todos os campos de senha!')
+    }
     const formData = new FormData()
     formData.append('name', name)
     formData.append('email', email)
-    formData.append('file', inputFile.current.files[0])
-    formData.append('newPassword', newPassword)
-    api.put(`/users/${match.params.id}`, { name, email, file, newPassword }).then(resp => {
+    if (file) {
+      formData.append('file', inputFile.current.files[0])
+    }
+    if (removePhoto) {
+      formData.append('removePhoto', removePhoto)
+    }
+    if (currentPassword || newPassword || confNewPass){
+      formData.append('currentPassword', currentPassword)
+      formData.append('newPassword', newPassword)
+    }
+    api.put(`/users`, formData).then(resp => {
       alert('Dados alterados')
     })
   }
@@ -55,21 +68,25 @@ function Profile({ match }) {
           <MdClose
             size={20}
             value={removePhoto}
-            onChange={e => setRemovePhoto(e.target.value)}
+            onClick={e => {
+              setFile(null)
+              setRemovePhoto(true)}}
             style={{
               marginRight: '100',
               color: 'var(--color-comments)',
               borderRadius: '50%',
               border: '1px solid #ccc', cursor: 'pointer'
             }} />
-          <ImgProfile src={ProfileImg} />
+          <ImgProfile src={file || ProfileImg} />
           <Input
             type="file"
             ref={inputFile}
             placeholder="Adicionar foto"
             accept='image/png, image/jpeg'
             style={{ display: 'none' }}
-            onChange={e => setFile(inputFile.current.files[0].name)}
+            onChange={e => {
+              const linkImage = URL.createObjectURL(inputFile.current.files[0].name)
+              setFile(linkImage)}}
           />
           <MdAddAPhoto
             size={20}
@@ -78,14 +95,6 @@ function Profile({ match }) {
               marginLeft: '100',
               color: 'var(--color-comments)', cursor: 'pointer'
             }} />
-          <Input
-            type="file"
-            ref={inputFile}
-            placeholder="Adicionar foto"
-            accept='image/png, image/jpeg'
-            style={{ display: 'none' }}
-            onChange={e => setFile(inputFile.current.files[0].name)}
-          />
           <Inputs>
             <Input
               placeholder="Nome"
