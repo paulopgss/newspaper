@@ -96,6 +96,7 @@ export const ImgComment = styled.img`
   height: 40px;
   background: var(--color-background-geral);
   border-radius: 50%;
+  object-fit: cover;
 `
 
 export const UserComment = styled.div`
