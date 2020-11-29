@@ -13,8 +13,12 @@ import {
   Button
 } from './styles'
 import {useAuth} from '../../App'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Modal = ({ id = 'modal', onClose = () => { } }) => {
+  const errorAdd = () => toast.error("Erro ao carregar a notícia!")
+  const errorNotice = () => toast.error("Todos os campos devem ser preenchidos")
 
   const { authUser } = useAuth()
 
@@ -27,7 +31,7 @@ const Modal = ({ id = 'modal', onClose = () => { } }) => {
   const submitNotice = () => {
 
     if (!title || !content || !inputFile.current || !inputFile.current.files[0]) {
-      return alert('Todos os campos devem ser preenchidos!')
+      return errorNotice()
     }
 
     const formData = new FormData();
@@ -38,12 +42,12 @@ const Modal = ({ id = 'modal', onClose = () => { } }) => {
     api.post('/news', formData).then(resp => {
       if (resp.data.success) {
         onClose(false)
-        return alert('Notícia adicionada!')
+        return
       }
       alert(resp.data.message);
 
     }).catch((err) => {
-      alert('Erro ao adicionar notícia')
+      errorAdd()
     })
   }
 
@@ -52,6 +56,7 @@ const Modal = ({ id = 'modal', onClose = () => { } }) => {
   }
   return (
     <ContainerModal id={id} onClick={handleOutSide}>
+      <ToastContainer />
       <Wrapper>
         <LogoImg src={Logo} alt="logo" />
         <SpanText>Preencha os campos abaixo para adicionar uma notícia.</SpanText>
