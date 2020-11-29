@@ -14,6 +14,8 @@ import {
   NameUser,
   CommentUser
 } from './styles'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import api from '../../services/api'
 import { useAuth } from '../../App'
 import Header from '../../components/Header'
@@ -21,10 +23,13 @@ import User from '../../assets/user.png'
 
 function Notice({ match }) {
   const { authUser } = useAuth()
-
   const [news, setNews] = useState('')
   const [text, setText] = useState('')
   const [comments, setComments] = useState([])
+
+  const Success = () => toast.success("Comentário adicionado")
+  const ErrorNotice = () => toast.error("Erro ao carregar a notícia!")
+  const ErrorComment = () => toast.error("Erro ao adicionar o comentário!")
 
   useEffect(() => {
     api.get(`/news/${match.params.id}`).then(resp => {
@@ -33,7 +38,7 @@ function Notice({ match }) {
         return setComments(resp.data.news.comments)
       }alert(resp.data.message)
     }).catch((err) => {
-      alert('Erro ao carregar a notícia!')
+      ErrorNotice()
     })
   }, [match.params.id])
 
@@ -41,16 +46,18 @@ function Notice({ match }) {
     api.post('/comments', { text, news_id: match.params.id, user_id: authUser.userId }).then(resp => {
       if (resp.data.success) {
         setText('')
+        Success()
         setComments([resp.data.comment, ...comments])
       }
     }).catch((err) => {
-      alert('Erro ao adicionar o comentário')
+      ErrorComment()
     })
   }
 
   return (
     <>
       <Header />
+      <ToastContainer />
       <ContainerNotice>
         <News>
           <Img src={news.image} alt="" />
@@ -69,7 +76,7 @@ function Notice({ match }) {
           {
             comments.map(comment => (
               <Comments key={comment.id}>
-                <ImgComment src={comment.user_photo || User} alt="" />
+                <ImgComment src={comment.user_photo || User} alt="Photo de perfil" />
                 <UserComment className="user-comments">
                   <NameUser>{comment.user_name}</NameUser>
                   <CommentUser>{comment.text}</CommentUser>

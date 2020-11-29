@@ -11,7 +11,6 @@ export function useAuth() {
 }
 
 function App() {
-
   const [authUser, setAuthUser] = useState({ authenticated: false });
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +28,7 @@ function App() {
           loading && <h1>Carregando...</h1>
         }
         {
-          !loading && <Routes authUser={authUser} />
+          !loading && <Routes authUser={authUser}/>
         }
       </div>
     </AuthContext.Provider>
