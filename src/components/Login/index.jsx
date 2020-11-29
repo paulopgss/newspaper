@@ -10,10 +10,12 @@ import {
   Input,
   Button
 } from './styles'
-
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { useAuth } from '../../App';
 
 function Login({ id = 'modal', onClose = () => { } }) {
+  const errorLogin = () => toast.error("Erro ao fazer login!")
 
   const { authUser, setAuthUser } = useAuth();
 
@@ -35,7 +37,7 @@ function Login({ id = 'modal', onClose = () => { } }) {
       alert(resp.data.message)
     }).catch((err) => {
       setLoading(false)
-      return alert('Erro ao realizar o login!')
+      return errorLogin()
     })
   }
 
@@ -44,6 +46,7 @@ function Login({ id = 'modal', onClose = () => { } }) {
   }
   return (
     <ContainerModal id={id} onClick={handleOutSide}>
+      <ToastContainer />
       <Wrapper>
         <LogoImg src={Logo} alt="logo" />
         <SpanText>Faça login para continuar</SpanText>
