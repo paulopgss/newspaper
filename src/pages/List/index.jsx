@@ -16,6 +16,8 @@ import {
   LinkD
 } from './styles'
 import Login from '../../components/Login'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {useAuth} from '../../App'
 
 
@@ -25,7 +27,7 @@ export const List = props => {
   const [modalVisible, setModalVisible] = useState(false)
   const [loginVisible, setLoginVisible] = useState(false)
 
-
+  const errorList = () => toast.error("Erro ao carregar as notícias!")
 
   useEffect(() => {
     api.get('/news').then(resp => {
@@ -33,13 +35,14 @@ export const List = props => {
       alert(resp.data.message)
 
     }).catch((err) => {
-      alert('Não foi possível buscar a lista de notícias.')
+      errorList()
     })
   }, [])
 
   return (
     <>
       <Header />
+      <ToastContainer />
       <ContainerL>
         <AddNews>
           <Title addnews>Últimas notícias</Title>
