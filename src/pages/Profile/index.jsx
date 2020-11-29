@@ -9,6 +9,8 @@ import {
   Input,
   Button
 } from './styles'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { MdAddAPhoto, MdClose } from 'react-icons/md'
 import { FiAlertTriangle } from 'react-icons/fi'
 import ProfileImg from '../../assets/user.png'
@@ -26,6 +28,10 @@ function Profile({ match }) {
   const [newPassword, setNewPassword] = useState('')
   const [confNewPass, setConfNewPass] = useState('')
 
+  const Success = () => toast.success("Dados alterados com sucesso!")
+  const errorCamp = () => toast.error("Os dados não podem ficar em branco!")
+  const errorPassword = () => toast.error("É necessário que seja preenchido todos os campos de senha!")
+
   useEffect(() => {
     api.get(`/users/${authUser.userId}`).then(resp => {
       setName(resp.data.user.name)
@@ -35,33 +41,42 @@ function Profile({ match }) {
   }, [match.params.id])
 
   const submitSave = () => {
+
     if (!name || !email) {
-      return alert('Os dados não podem ficar em branco, favor preencher!')
+      return errorCamp()
     }
 
-    if((currentPassword || newPassword || confNewPass) && (!currentPassword || !newPassword || !confNewPass)) {
-      return alert('É necessário preencher todos os campos de senha!')
+    if ((currentPassword || newPassword || confNewPass) && (!currentPassword || !newPassword || !confNewPass)) {
+      return errorPassword()
     }
+
     const formData = new FormData()
+
+    formData.append('user_id', authUser.userId)
     formData.append('name', name)
     formData.append('email', email)
+
     if (file) {
       formData.append('file', inputFile.current.files[0])
     }
+
     if (removePhoto) {
       formData.append('removePhoto', removePhoto)
     }
-    if (currentPassword || newPassword || confNewPass){
+
+    if (currentPassword || newPassword || confNewPass) {
       formData.append('currentPassword', currentPassword)
       formData.append('newPassword', newPassword)
     }
+
     api.put(`/users`, formData).then(resp => {
-      alert('Dados alterados')
+      Success()
     })
   }
   return (
     <>
       <Header />
+      <ToastContainer />
       <ContainerProfile>
         <Wrapper>
           <Span>Meus dados</Span>
@@ -85,7 +100,7 @@ function Profile({ match }) {
             accept='image/png, image/jpeg'
             style={{ display: 'none' }}
             onChange={e => {
-              const linkImage = URL.createObjectURL(inputFile.current.files[0].name)
+              const linkImage = URL.createObjectURL(inputFile.current.files[0])
               setFile(linkImage)}}
           />
           <MdAddAPhoto
