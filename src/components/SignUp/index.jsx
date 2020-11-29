@@ -10,6 +10,8 @@ import {
   Input,
   Button
 } from './styles'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {useAuth} from '../../App'
 
 
@@ -21,11 +23,15 @@ function SignUp({ id = 'modal', onClose = () => { } }) {
   const [password, setPassword] = useState('')
   const [comppass, setComppass] = useState('')
 
+  const erroSignUp = () => toast.error("Erro ao cadastrar usuário!")
+  const errorCamp = () => toast.error("Todos os campos devem ser preenchidos!")
+  const errorConf = () => toast.error("As senhas são diferentes!")
+
   const addUser = () => {
     if (!name || !email || !password || !comppass) {
-      return alert('Todos os campos devem ser preenchidos')
+      return errorCamp()
     } if (password !== comppass) {
-      return alert('As senhas são diferentes')
+      return errorConf()
     }
 
     api.post('/users', {name, email, password}).then(resp => {
@@ -38,7 +44,7 @@ function SignUp({ id = 'modal', onClose = () => { } }) {
       alert(resp.data.message)
 
     }).catch((err) => {
-      alert('Erro ao cadastrar usuário!')
+      erroSignUp()
     })
   }
 
@@ -47,6 +53,7 @@ function SignUp({ id = 'modal', onClose = () => { } }) {
   }
   return (
     <ContainerModal id={id} onClick={handleOutSide}>
+      <ToastContainer />
       <Wrapper>
         <LogoImg src={Logo} alt="logo" />
         <SpanText>Criar uma conta</SpanText>
