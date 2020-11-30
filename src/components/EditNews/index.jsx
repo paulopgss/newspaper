@@ -11,9 +11,11 @@ import {
   TextArea,
   Button
 } from './styles'
-import {useAuth} from '../../App'
+import { useAuth } from '../../App'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { MdAddAPhoto, MdClose } from 'react-icons/md'
+
 
 const EditNews = ({ id = 'modal', onClose = () => { } }) => {
   const errorAdd = () => toast.error("Erro ao carregar a notícia!")
@@ -26,6 +28,8 @@ const EditNews = ({ id = 'modal', onClose = () => { } }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [file, setFile] = useState('')
+  const [removePhoto, setRemovePhoto] = useState(false)
+
 
   const submitNotice = () => {
 
@@ -57,29 +61,38 @@ const EditNews = ({ id = 'modal', onClose = () => { } }) => {
     <ContainerModal id={id} onClick={handleOutSide}>
       <ToastContainer />
       <Wrapper>
-        <LogoImg src="" alt="Imagem da notícia" />
         <SpanText>Editar notícia</SpanText>
+        <MdClose
+            size={20}
+            onClick={e => {
+              setFile(null)
+              setRemovePhoto(true)}}
+            style={{
+              marginRight: '100',
+              color: 'var(--color-comments)',
+              borderRadius: '50%',
+              border: '1px solid #ccc', cursor: 'pointer'
+            }} />
+        <LogoImg src="" alt="Imagem da notícia" />
+        <MdAddAPhoto
+            size={20}
+            onClick={() => inputFile.current.click()}
+            style={{
+              marginLeft: '100',
+              color: 'var(--color-comments)', cursor: 'pointer'
+            }} />
         <Form>
           <InputsImg>
-            <Input
-              readOnly={true}
-              placeholder="Adicionar foto"
-              value={file}
-            />
             <Input
               type="file"
               ref={inputFile}
               placeholder="Adicionar foto"
               accept='image/png, image/jpeg'
               style={{ display: 'none' }}
-              onChange={e => setFile(inputFile.current.files[0].name)}
+              onChange={e => {
+                const linkImage = URL.createObjectURL(inputFile.current.files[0])
+                setFile(linkImage)}}
             />
-            <Button
-              search
-              onClick={() => inputFile.current.click()}
-              type="button">
-              Pesquisar
-              </Button>
           </InputsImg>
           <Input
             title

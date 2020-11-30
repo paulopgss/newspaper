@@ -72,7 +72,7 @@ export const TextArea = styled.textarea`
   font: 400 14px Roboto;
   padding: 15px;
   resize: none;
-  height: 200px;
+  height: 150px;
 
   &::placeholder {
     font-size: 14px;
