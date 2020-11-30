@@ -46,7 +46,9 @@ function Header() {
         {
           authUser.authenticated &&
           <Nav>
-            <Link to="/">Notícias</Link>
+            <Link to="/">Início</Link>
+
+            <Link to="/mynews/user/">Minhas Notícias</Link>
 
             <Link to="/profile/user" >Meus dados</Link>
 
