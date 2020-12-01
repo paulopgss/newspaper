@@ -28,7 +28,6 @@ const EditNews = ({ id = 'modal', onClose = () => { } }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [file, setFile] = useState('')
-  const [removePhoto, setRemovePhoto] = useState(false)
 
 
   const submitNotice = () => {
@@ -62,17 +61,6 @@ const EditNews = ({ id = 'modal', onClose = () => { } }) => {
       <ToastContainer />
       <Wrapper>
         <SpanText>Editar notícia</SpanText>
-        <MdClose
-            size={20}
-            onClick={e => {
-              setFile(null)
-              setRemovePhoto(true)}}
-            style={{
-              marginRight: '100',
-              color: 'var(--color-comments)',
-              borderRadius: '50%',
-              border: '1px solid #ccc', cursor: 'pointer'
-            }} />
         <LogoImg src="" alt="Imagem da notícia" />
         <MdAddAPhoto
             size={20}
