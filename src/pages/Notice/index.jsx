@@ -7,6 +7,7 @@ import {
   ContentNews,
   TitleComment,
   NewComment,
+  Chevron,
   Input, Button,
   Comments,
   ImgComment,
@@ -14,12 +15,14 @@ import {
   NameUser,
   CommentUser
 } from './styles'
+import { FiChevronsLeft } from 'react-icons/fi'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import api from '../../services/api'
 import { useAuth } from '../../App'
 import Header from '../../components/Header'
 import User from '../../assets/user.png'
+import { Link } from 'react-router-dom'
 
 function Notice({ match }) {
   const { authUser } = useAuth()
@@ -33,10 +36,10 @@ function Notice({ match }) {
 
   useEffect(() => {
     api.get(`/news/${match.params.id}`).then(resp => {
-      if(resp.data.success){
+      if (resp.data.success) {
         setNews(resp.data.news)
         return setComments(resp.data.news.comments)
-      }alert(resp.data.message)
+      } alert(resp.data.message)
     }).catch((err) => {
       ErrorNotice()
     })
@@ -59,6 +62,11 @@ function Notice({ match }) {
       <Header />
       <ToastContainer />
       <ContainerNotice>
+        <Chevron>
+          <Link to="/">
+            <FiChevronsLeft onClick="/" size={20} style={{ cursor: 'pointer' }} /></Link>
+          <strong>Detalhes da Notícia</strong>
+        </Chevron>
         <News>
           <Img src={news.image} alt="" />
           <Title>{news.title}</Title>

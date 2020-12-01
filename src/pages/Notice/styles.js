@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { shade } from 'polished'
 
 export const ContainerNotice = styled.div`
@@ -35,6 +35,10 @@ export const Title = styled.strong`
   margin: 20px 52px 20px 52px;
   font-size: 24px;
   text-align: justify;
+
+  ${props => props.chevron && css`
+    margin: 0;
+  `}
 `
 
 export const ContentNews = styled.p`
@@ -120,4 +124,25 @@ export const CommentUser = styled.p`
   flex-wrap: wrap;
   overflow: hidden;
   text-align: justify;
+`
+
+export const Chevron = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 800px;
+  padding: 20px;
+
+  strong {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    font-size: 24px;
+  }
+
+  a{
+    text-decoration: none;
+    color: #000;
+  }
 `
