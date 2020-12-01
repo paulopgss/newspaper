@@ -88,7 +88,7 @@ export const AddNews = styled.div`
   flex-direction: column;
   align-items: center;
   width: 800px;
-  height: 150px;
+  height: 100px;
   background: var(--color-background);
   margin-top: 20px;
   border-radius: 20px;

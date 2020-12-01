@@ -2,7 +2,6 @@ import React, { useState, useEffect, Fragment } from 'react'
 
 import api from '../../services/api'
 import Header from '../../components/Header'
-import Modal from '../../components/Modal';
 import {
   ContainerL,
   AddNews,
@@ -52,7 +51,7 @@ export const MyNews = props => {
       <ToastContainer />
       <ContainerL>
         <AddNews>
-          <Title addnews>Últimas notícias</Title>
+          <Title addnews>Minhas notícias</Title>
         </AddNews>
         {
           loading &&
