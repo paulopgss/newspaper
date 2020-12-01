@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import api from '../../services/api'
 import Logo from '../../assets/logo.png'
 import {
@@ -26,6 +26,11 @@ function SignUp({ id = 'modal', onClose = () => { } }) {
   const erroSignUp = () => toast.error("Erro ao cadastrar usuário!")
   const errorCamp = () => toast.error("Todos os campos devem ser preenchidos!")
   const errorConf = () => toast.error("As senhas são diferentes!")
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => document.body.style.overflow = 'unset'
+  }, [])
 
   const addUser = () => {
     if (!name || !email || !password || !comppass) {

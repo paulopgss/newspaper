@@ -11,7 +11,6 @@ import {
   TextArea,
   Button
 } from './styles'
-import { useAuth } from '../../App'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { MdAddAPhoto } from 'react-icons/md'
@@ -32,8 +31,8 @@ const EditNews = ({ id = 'modal', onClose = () => { }, editNews, refreshList }) 
     setTitle(editNews.title)
     setContent(editNews.content)
 
-    document.body.style.overflow = 'hidden';
-    return () => document.body.style.overflow = 'unset';
+    document.body.style.overflow = 'hidden'
+    return () => document.body.style.overflow = 'unset'
   }, [])
 
   const submitNotice = () => {

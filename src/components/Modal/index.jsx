@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Logo from '../../assets/logo.png'
 import api from '../../services/api'
 import {
@@ -27,6 +27,11 @@ const Modal = ({ id = 'modal', onClose = () => { } }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [file, setFile] = useState('')
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => document.body.style.overflow = 'unset'
+  }, [])
 
   const submitNotice = () => {
 

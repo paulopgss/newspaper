@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Logo from '../../assets/logo.png'
 import api from '../../services/api'
 import {
@@ -23,6 +23,11 @@ function Login({ id = 'modal', onClose = () => { } }) {
   const [password, setPassword] = useState('')
 
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => document.body.style.overflow = 'unset'
+  }, [])
 
   const submitLogin = () => {
     setLoading(true)

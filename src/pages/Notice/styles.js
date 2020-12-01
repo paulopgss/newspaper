@@ -118,5 +118,6 @@ export const CommentUser = styled.p`
   margin-bottom: 20px;
   margin-top: 0;
   flex-wrap: wrap;
+  overflow: hidden;
   text-align: justify;
 `
