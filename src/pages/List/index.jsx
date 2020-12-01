@@ -10,6 +10,9 @@ import {
   ImgLoad,
   NewsText,
   Title,
+  NewsAdd,
+  Search,
+  Input,
   TextContent,
   OpenNews,
   ButtonStyled,
@@ -45,6 +48,7 @@ export const List = props => {
       <ToastContainer />
       <ContainerL>
         <AddNews>
+          <NewsAdd>
           <Title addnews>Últimas notícias</Title>
           { authUser.authenticated && 
           <ButtonStyled onClick={() => setModalVisible(true)}>Adicionar notícia</ButtonStyled>
@@ -53,6 +57,11 @@ export const List = props => {
             modalVisible &&
             <Modal onClose={() => setModalVisible(false)} />
           }
+          </NewsAdd>
+          <Search>
+            <Input placeholder="Buscar notícia" />
+            <ButtonStyled searchButton>Pesquisar</ButtonStyled>
+          </Search>
         </AddNews>
         { authUser.authenticated &&
           notices.map(notice => (

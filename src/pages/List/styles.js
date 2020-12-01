@@ -52,14 +52,34 @@ export const NewsText = styled.div`
 `
 
 export const Title = styled.strong`
-  margin-top: 27px;
-  margin-right: 27px;
+  display: flex;
+  justify-content: center;
+  flex: 1;
   flex-wrap: wrap;
   color: var(--color-text);
 
   ${props => props.addnews && css`
    font-size: 24px;
   ` }
+`
+
+export const Search = styled.div`
+  display: flex;
+  padding-top: 20px;
+`
+
+export const Input = styled.input`
+  flex: 1;
+  border: 1px solid #ccc;
+  padding-left: 10px;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+`
+
+export const NewsAdd = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 `
 
 export const TextContent = styled.span`
@@ -86,11 +106,11 @@ export const OpenNews = styled.p`
 export const AddNews = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 800px;
   height: 150px;
   background: var(--color-background);
   margin-top: 20px;
+  padding: 20px;
   border-radius: 20px;
 `
 
@@ -98,15 +118,12 @@ export const ButtonStyled = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: flex-end;
-  margin-right: 20px;
-  margin-top: 35px;
   outline: none;
   background: var(--color-button);
   color: var(--color-background);
   height: 40px;
   border: none;
-  border-radius: 25px;
+  border-radius: 20px;
   transition: 0.2s;
   cursor: pointer;
   padding: 0 30px;
@@ -114,4 +131,9 @@ export const ButtonStyled = styled.button`
   &:hover{
     background: ${shade(0.2, '#53B4CF')};
   }
+
+  ${props => props.searchButton && css`
+    border-radius: 0 20px 20px 0;
+    width: 160px;
+  `}
 `
