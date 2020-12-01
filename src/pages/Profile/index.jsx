@@ -96,7 +96,6 @@ function Profile({ match }) {
           <Input
             type="file"
             ref={inputFile}
-            placeholder="Adicionar foto"
             accept='image/png, image/jpeg'
             style={{ display: 'none' }}
             onChange={e => {

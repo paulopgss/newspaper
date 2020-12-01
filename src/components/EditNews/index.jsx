@@ -1,9 +1,9 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import api from '../../services/api'
 import {
   ContainerModal,
   Wrapper,
-  LogoImg,
+  ImgNews,
   SpanText,
   Form,
   InputsImg,
@@ -14,37 +14,44 @@ import {
 import { useAuth } from '../../App'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { MdAddAPhoto, MdClose } from 'react-icons/md'
+import { MdAddAPhoto } from 'react-icons/md'
 
 
-const EditNews = ({ id = 'modal', onClose = () => { } }) => {
-  const errorAdd = () => toast.error("Erro ao carregar a notícia!")
+const EditNews = ({ id = 'modal', onClose = () => { }, editNews }) => {
+  const errorAdd = () => toast.error("Erro ao carregar os dados da notícia!")
   const errorNotice = () => toast.error("Todos os campos devem ser preenchidos")
 
   const { authUser } = useAuth()
-
   const inputFile = useRef(null)
-
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [file, setFile] = useState('')
 
+  
+  useEffect(() => {
+      setFile(editNews.image)
+      setTitle(editNews.title)
+      setContent(editNews.content)
+  }, [])
+
 
   const submitNotice = () => {
 
-    if (!title || !content || !inputFile.current || !inputFile.current.files[0]) {
+    if (!title || !content ) {
       return errorNotice()
     }
 
     const formData = new FormData();
-    formData.append('file', inputFile.current.files[0])
+    if(inputFile.current.files[0]) {
+      formData.append('file', inputFile.current.files[0])
+    }
     formData.append('title', title)
     formData.append('content', content)
-    formData.append('user_id', authUser.userId)
-    api.post('/news', formData).then(resp => {
+    formData.append('news_id', editNews.id)
+    api.put('/news', formData).then(resp => {
       if (resp.data.success) {
         onClose(false)
-        return
+        return 
       }
       alert(resp.data.message);
 
@@ -61,12 +68,12 @@ const EditNews = ({ id = 'modal', onClose = () => { } }) => {
       <ToastContainer />
       <Wrapper>
         <SpanText>Editar notícia</SpanText>
-        <LogoImg src="" alt="Imagem da notícia" />
-        <MdAddAPhoto
+        <ImgNews src={file} alt="Imagem da notícia" />
+          <MdAddAPhoto
             size={20}
             onClick={() => inputFile.current.click()}
             style={{
-              marginLeft: '100',
+              marginLeft: '200',
               color: 'var(--color-comments)', cursor: 'pointer'
             }} />
         <Form>
@@ -74,12 +81,12 @@ const EditNews = ({ id = 'modal', onClose = () => { } }) => {
             <Input
               type="file"
               ref={inputFile}
-              placeholder="Adicionar foto"
               accept='image/png, image/jpeg'
               style={{ display: 'none' }}
               onChange={e => {
                 const linkImage = URL.createObjectURL(inputFile.current.files[0])
-                setFile(linkImage)}}
+                setFile(linkImage)
+              }}
             />
           </InputsImg>
           <Input

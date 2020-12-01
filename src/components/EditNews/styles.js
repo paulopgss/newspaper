@@ -24,17 +24,19 @@ export const Wrapper = styled.div`
   width: 500px;
   background: var(--color-background);
   border-radius: 20px;
+  padding: 20px;
 `
 
-export const LogoImg = styled.img`
+export const ImgNews = styled.img`
+  display: flex;
+  border-radius: 20px;
   width: 200px;
-  height: 80px;
-  padding: 20px;
+  height: 150px;
   object-fit: cover;
 `
 
 export const SpanText = styled.span`
-  margin: 27px 20px;
+  padding-bottom: 20px;
 `
 
 export const Form = styled.div`
@@ -47,7 +49,6 @@ export const Form = styled.div`
 export const InputsImg = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 20px;
 `
 
 export const Input = styled.input`
@@ -100,7 +101,7 @@ export const Button = styled.button`
 
   ${props => props.submit && css`
     align-self: flex-end;
-    margin: 20px 0;
+    margin-top: 20px;
     width: 150px;
     border-radius: 20px;
   `}
