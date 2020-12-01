@@ -27,7 +27,7 @@ import {useAuth} from '../../App'
 export const List = props => {
   const {authUser} = useAuth()
   const [notices, setNotices] = useState([])
-  const [search, setSearch] = useState([])
+  const [search, setSearch] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
   const [loginVisible, setLoginVisible] = useState(false)
 
@@ -42,6 +42,15 @@ export const List = props => {
       errorList()
     })
   }, [])
+
+  const searchB = () => {
+    api.get(`/news?search=${search}`).then(resp => {
+      setSearch('')
+      return setNotices(resp.data.news)
+    }).catch((err) => {
+      alert('Noticia não encontrada!')
+    })
+  }
 
   return (
     <>
@@ -60,8 +69,10 @@ export const List = props => {
           }
           </NewsAdd>
           <Search>
-            <Input placeholder="Buscar notícia por título ou conteúdo" />
-            <ButtonStyled searchButton>Pesquisar</ButtonStyled>
+            <Input value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Buscar notícia por título ou conteúdo" />
+            <ButtonStyled searchButton onClick={searchB}>Pesquisar</ButtonStyled>
           </Search>
         </AddNews>
         { authUser.authenticated &&
