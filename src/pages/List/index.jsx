@@ -27,6 +27,7 @@ import {useAuth} from '../../App'
 export const List = props => {
   const {authUser} = useAuth()
   const [notices, setNotices] = useState([])
+  const [search, setSearch] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
   const [loginVisible, setLoginVisible] = useState(false)
 
@@ -59,7 +60,7 @@ export const List = props => {
           }
           </NewsAdd>
           <Search>
-            <Input placeholder="Buscar notícia" />
+            <Input placeholder="Buscar notícia por título ou conteúdo" />
             <ButtonStyled searchButton>Pesquisar</ButtonStyled>
           </Search>
         </AddNews>
@@ -68,7 +69,7 @@ export const List = props => {
             <Link to={`news/${notice.id}`} key={notice.id}>
               <ImgLoad src={notice.image} alt="imagem da noticia" />
               <NewsText>
-                <Title>{notice.title}</Title>
+                <Title news>{notice.title}</Title>
                 <TextContent>{notice.content}</TextContent>
                 <OpenNews>Ler notícia completa</OpenNews>
               </NewsText>

@@ -52,14 +52,17 @@ export const NewsText = styled.div`
 `
 
 export const Title = styled.strong`
-  display: flex;
-  justify-content: center;
-  flex: 1;
+  margin-top: 27px;
+  margin-right: 27px;
   flex-wrap: wrap;
   color: var(--color-text);
 
   ${props => props.addnews && css`
-   font-size: 24px;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    margin: 0;
+    font-size: 24px;
   ` }
 `
 
