@@ -13,6 +13,7 @@ export const ContainerModal = styled.div`
   right: 0;
   z-index: 10;
   font-family: Roboto;
+  overflow: hidden;
 `
 
 export const Wrapper = styled.div`

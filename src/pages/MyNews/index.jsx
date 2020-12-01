@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 
 import api from '../../services/api'
 import Header from '../../components/Header'
@@ -16,25 +16,35 @@ import {
 import EditNews from '../../components/EditNews'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import {useAuth} from '../../App'
+import { useAuth } from '../../App'
 
 
 export const MyNews = props => {
-  const {authUser} = useAuth()
+
+  const { authUser } = useAuth()
   const [notices, setNotices] = useState([])
   const [editNews, setEditNews] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   const errorList = () => toast.error("Erro ao carregar as notícias!")
 
   useEffect(() => {
-    api.get('/news', {headers: {user_id: authUser.userId}}).then(resp => {
-      if (resp.data.success) return setNotices(resp.data.news)
+    refreshList()
+  }, [])
+
+  const refreshList = () => {
+    setLoading(true)
+    api.get('/news', { headers: { user_id: authUser.userId } }).then(resp => {
+      if (resp.data.success) {
+        setNotices(resp.data.news)
+        return setLoading(false)
+      }
       alert(resp.data.message)
 
     }).catch((err) => {
       errorList()
     })
-  }, [])
+  }
 
   return (
     <>
@@ -45,7 +55,13 @@ export const MyNews = props => {
           <Title addnews>Últimas notícias</Title>
         </AddNews>
         {
-          notices.map(notice => (
+          loading &&
+          <Fragment>
+            Carregando...
+          </Fragment>
+        }
+        {
+          !loading && notices.map(notice => (
             <LinkD onClick={() => setEditNews(notice)} key={notice.id}>
               <ImgLoad src={notice.image} alt="imagem da noticia" />
               <NewsText>
@@ -56,10 +72,10 @@ export const MyNews = props => {
             </LinkD>
           ))
         }
-         {
-              !!editNews &&
-              <EditNews onClose={() => setEditNews(null)} editNews={editNews} />
-            }
+        {
+          !!editNews &&
+          <EditNews onClose={() => setEditNews(null)} editNews={editNews} refreshList={refreshList} />
+        }
       </ContainerL>
     </>
   )

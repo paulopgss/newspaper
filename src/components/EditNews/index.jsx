@@ -17,32 +17,33 @@ import 'react-toastify/dist/ReactToastify.css'
 import { MdAddAPhoto } from 'react-icons/md'
 
 
-const EditNews = ({ id = 'modal', onClose = () => { }, editNews }) => {
+const EditNews = ({ id = 'modal', onClose = () => { }, editNews, refreshList }) => {
   const errorAdd = () => toast.error("Erro ao carregar os dados da notícia!")
   const errorNotice = () => toast.error("Todos os campos devem ser preenchidos")
 
-  const { authUser } = useAuth()
   const inputFile = useRef(null)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [file, setFile] = useState('')
 
-  
-  useEffect(() => {
-      setFile(editNews.image)
-      setTitle(editNews.title)
-      setContent(editNews.content)
-  }, [])
 
+  useEffect(() => {
+    setFile(editNews.image)
+    setTitle(editNews.title)
+    setContent(editNews.content)
+
+    document.body.style.overflow = 'hidden';
+    return () => document.body.style.overflow = 'unset';
+  }, [])
 
   const submitNotice = () => {
 
-    if (!title || !content ) {
+    if (!title || !content) {
       return errorNotice()
     }
 
     const formData = new FormData();
-    if(inputFile.current.files[0]) {
+    if (inputFile.current.files[0]) {
       formData.append('file', inputFile.current.files[0])
     }
     formData.append('title', title)
@@ -50,8 +51,9 @@ const EditNews = ({ id = 'modal', onClose = () => { }, editNews }) => {
     formData.append('news_id', editNews.id)
     api.put('/news', formData).then(resp => {
       if (resp.data.success) {
+        refreshList()
         onClose(false)
-        return 
+        return
       }
       alert(resp.data.message);
 
@@ -69,13 +71,13 @@ const EditNews = ({ id = 'modal', onClose = () => { }, editNews }) => {
       <Wrapper>
         <SpanText>Editar notícia</SpanText>
         <ImgNews src={file} alt="Imagem da notícia" />
-          <MdAddAPhoto
-            size={20}
-            onClick={() => inputFile.current.click()}
-            style={{
-              marginLeft: '200',
-              color: 'var(--color-comments)', cursor: 'pointer'
-            }} />
+        <MdAddAPhoto
+          size={20}
+          onClick={() => inputFile.current.click()}
+          style={{
+            marginLeft: '200',
+            color: 'var(--color-comments)', cursor: 'pointer'
+          }} />
         <Form>
           <InputsImg>
             <Input
@@ -90,7 +92,6 @@ const EditNews = ({ id = 'modal', onClose = () => { }, editNews }) => {
             />
           </InputsImg>
           <Input
-            title
             placeholder="Título"
             value={title}
             onChange={e => setTitle(e.target.value)}
