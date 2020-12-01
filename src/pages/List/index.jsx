@@ -45,7 +45,6 @@ export const List = props => {
 
   const searchB = () => {
     api.get(`/news?search=${search}`).then(resp => {
-      setSearch('')
       return setNotices(resp.data.news)
     }).catch((err) => {
       alert('Noticia não encontrada!')
