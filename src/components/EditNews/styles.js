@@ -101,9 +101,25 @@ export const Button = styled.button`
   `}
 
   ${props => props.submit && css`
-    align-self: flex-end;
     margin-top: 20px;
     width: 150px;
     border-radius: 20px;
   `}
+
+  ${props => props.delete && css`
+    margin-top: 20px;
+    width: 150px;
+    border-radius: 20px;
+    background: #F04248;
+
+    :hover{
+      background: ${shade(0.2, '#F04248')}
+    }
+  `}
+`
+
+export const Buttons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `

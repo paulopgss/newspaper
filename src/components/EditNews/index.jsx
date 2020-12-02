@@ -9,7 +9,8 @@ import {
   InputsImg,
   Input,
   TextArea,
-  Button
+  Button,
+  Buttons
 } from './styles'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -61,6 +62,14 @@ const EditNews = ({ id = 'modal', onClose = () => { }, editNews, refreshList }) 
     })
   }
 
+  const removeNews = () => {
+    api.delete(`/news/${editNews.id}`).then(resp => {
+      refreshList()
+      onClose(false)
+      return alert('Noticia excluída!')
+    })
+  }
+
   const handleOutSide = (e) => {
     if (e.target.id === id) onClose()
   }
@@ -101,9 +110,14 @@ const EditNews = ({ id = 'modal', onClose = () => { }, editNews, refreshList }) 
             value={content}
             onChange={e => setContent(e.target.value)}
           />
-          <Button
-            submit
-            onClick={submitNotice}>Adicionar</Button>
+          <Buttons>
+            <Button
+              delete
+              onClick={removeNews}>Excluir</Button>
+            <Button
+              submit
+              onClick={submitNotice}>Salvar</Button>
+          </Buttons>
         </Form>
       </Wrapper>
     </ContainerModal>
