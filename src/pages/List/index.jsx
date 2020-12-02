@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
 import api from '../../services/api'
@@ -28,20 +28,29 @@ export const List = props => {
   const {authUser} = useAuth()
   const [notices, setNotices] = useState([])
   const [search, setSearch] = useState('')
+  const [loading, setLoading] = useState(true)
   const [modalVisible, setModalVisible] = useState(false)
   const [loginVisible, setLoginVisible] = useState(false)
 
   const errorList = () => toast.error("Erro ao carregar as notícias!")
 
   useEffect(() => {
+    refreshList()
+  }, [])
+
+  const refreshList = () => {
+    setLoading(true)
     api.get('/news').then(resp => {
-      if (resp.data.success) return setNotices(resp.data.news)
+      if (resp.data.success) {
+        setNotices(resp.data.news)
+        return setLoading(false)
+      }
       alert(resp.data.message)
 
     }).catch((err) => {
       errorList()
     })
-  }, [])
+  }
 
   const searchB = () => {
     api.get(`/news?search=${search}`).then(resp => {
@@ -64,7 +73,7 @@ export const List = props => {
           }
           {
             modalVisible &&
-            <Modal onClose={() => setModalVisible(false)} />
+            <Modal onClose={() => setModalVisible(false)} refreshList={refreshList}/>
           }
           </NewsAdd>
           <Search>
@@ -74,6 +83,12 @@ export const List = props => {
             <ButtonStyled searchButton onClick={searchB}>Pesquisar</ButtonStyled>
           </Search>
         </AddNews>
+        {
+          loading &&
+          <Fragment>
+            Carregando...
+          </Fragment>
+        }
         { authUser.authenticated &&
           notices.map(notice => (
             <Link to={`news/${notice.id}`} key={notice.id}>
@@ -100,7 +115,7 @@ export const List = props => {
         }
          {
               loginVisible &&
-              <Login onClose={() => setLoginVisible(false)} />
+              <Login onClose={() => setLoginVisible(false)}/>
             }
       </ContainerL>
     </>

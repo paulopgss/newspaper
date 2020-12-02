@@ -16,7 +16,7 @@ import {useAuth} from '../../App'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-const Modal = ({ id = 'modal', onClose = () => { } }) => {
+const Modal = ({ id = 'modal', onClose = () => { }, refreshList }) => {
   const errorAdd = () => toast.error("Erro ao carregar a notícia!")
   const errorNotice = () => toast.error("Todos os campos devem ser preenchidos")
 
@@ -46,6 +46,7 @@ const Modal = ({ id = 'modal', onClose = () => { } }) => {
     formData.append('user_id', authUser.userId)
     api.post('/news', formData).then(resp => {
       if (resp.data.success) {
+        refreshList()
         onClose(false)
         return
       }
