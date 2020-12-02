@@ -12,16 +12,17 @@ import {
 } from './styles'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import {useAuth} from '../../App'
+import { useAuth } from '../../App'
 
 
 function SignUp({ id = 'modal', onClose = () => { } }) {
-  const {setAuthUser} = useAuth()
+  const { setAuthUser } = useAuth()
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [comppass, setComppass] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const erroSignUp = () => toast.error("Erro ao cadastrar usuário!")
   const errorCamp = () => toast.error("Todos os campos devem ser preenchidos!")
@@ -33,16 +34,18 @@ function SignUp({ id = 'modal', onClose = () => { } }) {
   }, [])
 
   const addUser = () => {
+    setLoading(true)
     if (!name || !email || !password || !comppass) {
       return errorCamp()
     } if (password !== comppass) {
       return errorConf()
     }
 
-    api.post('/users', {name, email, password}).then(resp => {
+    api.post('/users', { name, email, password }).then(resp => {
       if (resp.data.success) {
+        setLoading(false)
         onClose(false)
-        setAuthUser({ authenticated: true, userId: resp.data.user_id})
+        setAuthUser({ authenticated: true, userId: resp.data.user_id })
         localStorage.setItem('userId', resp.data.user_id)
         return
       }
@@ -89,7 +92,7 @@ function SignUp({ id = 'modal', onClose = () => { } }) {
           <Button
             submit
             onClick={addUser}
-          >Criar</Button>
+          >{loading ? 'Carregando...' : 'Criar'}</Button>
         </Form>
       </Wrapper>
     </ContainerModal>

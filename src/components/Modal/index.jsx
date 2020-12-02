@@ -12,7 +12,7 @@ import {
   TextArea,
   Button
 } from './styles'
-import {useAuth} from '../../App'
+import { useAuth } from '../../App'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -27,6 +27,7 @@ const Modal = ({ id = 'modal', onClose = () => { }, refreshList }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [file, setFile] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -34,6 +35,7 @@ const Modal = ({ id = 'modal', onClose = () => { }, refreshList }) => {
   }, [])
 
   const submitNotice = () => {
+    setLoading(true)
 
     if (!title || !content || !inputFile.current || !inputFile.current.files[0]) {
       return errorNotice()
@@ -46,6 +48,7 @@ const Modal = ({ id = 'modal', onClose = () => { }, refreshList }) => {
     formData.append('user_id', authUser.userId)
     api.post('/news', formData).then(resp => {
       if (resp.data.success) {
+        setLoading(false)
         refreshList()
         onClose(false)
         return
@@ -102,7 +105,7 @@ const Modal = ({ id = 'modal', onClose = () => { }, refreshList }) => {
           />
           <Button
             submit
-            onClick={submitNotice}>Adicionar</Button>
+            onClick={submitNotice}>{loading ? 'Carregando...' : 'Adicionar'}</Button>
         </Form>
       </Wrapper>
     </ContainerModal>

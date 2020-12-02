@@ -25,6 +25,7 @@ const EditNews = ({ id = 'modal', onClose = () => { }, editNews, refreshList }) 
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [file, setFile] = useState('')
+  const [loading, setLoading] = useState(false)
 
 
   useEffect(() => {
@@ -63,7 +64,9 @@ const EditNews = ({ id = 'modal', onClose = () => { }, editNews, refreshList }) 
   }
 
   const removeNews = () => {
+    setLoading(true)
     api.delete(`/news/${editNews.id}`).then(resp => {
+    setLoading(false)
       refreshList()
       onClose(false)
       return alert('Noticia excluída!')
@@ -113,10 +116,10 @@ const EditNews = ({ id = 'modal', onClose = () => { }, editNews, refreshList }) 
           <Buttons>
             <Button
               delete
-              onClick={removeNews}>Excluir</Button>
+              onClick={removeNews}>{loading ? 'Carregando...' : 'Excluir'}</Button>
             <Button
               submit
-              onClick={submitNotice}>Salvar</Button>
+              onClick={submitNotice}>{loading ? 'Carregando...' : 'Salvar'}</Button>
           </Buttons>
         </Form>
       </Wrapper>
